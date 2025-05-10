@@ -1,19 +1,5 @@
 Rails.application.routes.draw do
-  get "pages/carrito"
-  get "pages/home"
-  get "pages/dashboard"
-  get "pages/menu"
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  # devise_for :users
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
-  # Defines the root path route ("/")
   devise_for :users
 
   devise_scope :user do
@@ -23,7 +9,14 @@ Rails.application.routes.draw do
   get "index", to: "pages#index"
   get 'carrito', to: 'pages#carrito', as: 'carrito' 
   get 'menu', to: 'pages#menu', as: 'menu'
-  # root "pages#home"
 
-  resources :grupos, only: [:index, :new, :create]
+
+  namespace :dashboard do
+    root to: "dashboard#index"
+    resources :grupos, path: "grupos"
+    resources :products, path: "productos"
+  end
+
+
+
 end

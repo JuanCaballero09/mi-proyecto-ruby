@@ -1,0 +1,11 @@
+<h1>Nuevo Producto</h1>
+
+<%= form_with model: @product, url: dashboard_products_path, local: true do |form|%>
+<div>
+    <%= form.label :nombre%><br>
+    <%= form.text_field :nombre%>
+</div>
+<div>
+    <%= form.submit "crear"%>
+</div>
+<% end %>

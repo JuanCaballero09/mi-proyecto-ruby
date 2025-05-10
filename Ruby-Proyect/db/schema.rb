@@ -10,16 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_08_160633) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_10_023036) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
-
-  create_table "carros", force: :cascade do |t|
-    t.string "nombre"
-    t.string "placa"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "grupos", force: :cascade do |t|
     t.string "nombre"
@@ -27,11 +20,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_08_160633) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "pruebas", force: :cascade do |t|
+  create_table "products", force: :cascade do |t|
     t.string "nombre"
-    t.string "password"
+    t.float "precio"
+    t.string "descripcion"
+    t.boolean "disponible"
+    t.string "imagen"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "grupo_id", null: false
+    t.index ["grupo_id"], name: "index_products_on_grupo_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -53,10 +51,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_08_160633) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "usuarios", force: :cascade do |t|
-    t.string "nombre"
-    t.string "password"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+  add_foreign_key "products", "grupos"
 end

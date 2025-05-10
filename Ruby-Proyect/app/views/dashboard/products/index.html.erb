@@ -1,0 +1,9 @@
+<h1>Productos creados</h1>
+
+<ul>
+    <% @products.each do |product|%>
+    <li><%= product.nombre %></li>
+    <% end %>
+</ul>
+
+<%= link_to "Crear un nuevo producto", new_dashboard_product_path %>
