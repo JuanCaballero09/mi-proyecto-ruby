@@ -22,6 +22,11 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/imagen1.jpeg
+    - assets/imagen2.jpeg
+    - assets/imagen3.jpeg
+  
 
 flutter_launcher_icons:
   android: true
