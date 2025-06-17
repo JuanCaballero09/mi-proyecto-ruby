@@ -36,8 +36,33 @@ class PagesController < ApplicationController
   def carrito
     @seccion = "carrito"
     @carrito = session[:carrito] || []
-    @total = @carrito.sum { |p| p["precio"].to_f * p["cantidad"] }
+    @total = @carrito.sum do |p|
+      precio = p["precio"].to_s.gsub(".","").to_f
+      precio * p["cantidad"].to_f
+    end 
     render :index
+  end
+
+  def aumentar
+    modificar_cantidad(params[:producto_id],+1)
+    redirect_to carrito_path
+  end
+
+  def disminuir
+    modificar_cantidad(params[:producto_id],-1)
+    redirect_to carrito_path
+  end
+
+  def modificar_cantidad
+    carrito = session[:carrito] || []
+    carrito.each do |item|
+      if item ["producto_id"].to_i == producto_id.to_i
+        item["cantidad"] +=cambio
+        break
+        session[:carrito] = carrito
+       redirect_to carrito_path
+      end
+    end
   end
 
   def agregar_al_carrito

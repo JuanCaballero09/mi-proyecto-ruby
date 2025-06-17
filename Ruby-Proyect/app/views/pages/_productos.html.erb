@@ -11,6 +11,13 @@
                 <h4><%= producto.nombre %></h4>
                 <p><%= producto.descripcion %></p>
                 <p><strong><%= number_to_currency(producto.precio, unit: "COP ", separator: ",", delimiter: ".", precision: 0) %> $</strong></p>
+                <div class = "botones-compra">
+                  <%= form_with url: agregar_al_carrito_path, method: :post do %>
+                    <%= hidden_field_tag :producto_id, producto.id %>
+                    <%= submit_tag "Agregar al Carrito", class: "boton-compra"%>
+                  <% end %>
+                  <%= link_to "Comprar ahora", formulario_path(producto.id), class: 'boton-compra' %>
+                </div>
             </div>
 
         <% end %>
