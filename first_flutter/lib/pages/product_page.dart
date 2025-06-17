@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'menu_page.dart';
 import 'login_page.dart';
+
+
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key});
 
@@ -17,34 +19,29 @@ class _ProductPageState extends State<ProductPage> {
     });
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
-    final pages = [ // Página del menú
-     const Center(child: Text('inicio (en construcción)'),),
+    final pages = [
+      const Center(child: Text('inicio (en construcción)')),
       const MenuPage(),
       const Center(child: Text('Carrito (en construcción)')),
       const Center(child: Text('Perfil (en construcción)')),
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('La Terrraza Del Pri'),
-      ),
+      appBar: AppBar(title: const Text('La Terrraza Del Pri')),
       body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         selectedItemColor: Colors.amber[800],
         unselectedItemColor: Colors.grey,
-        
 
         items: const [
-            BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Inicio',
-            ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home), 
+            label: 'Inicio'),
+
           BottomNavigationBarItem(
             icon: Icon(Icons.restaurant_menu),
             label: 'Menú',
@@ -54,13 +51,12 @@ class _ProductPageState extends State<ProductPage> {
             label: 'Carrito',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Perfil',
-          ),
-        
-            
+            icon: Icon(Icons.person), 
+            label: 'Perfil'),
         ],
       ),
     );
   }
 }
+
+
