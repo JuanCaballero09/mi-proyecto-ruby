@@ -16,7 +16,7 @@ html,body{
     padding: 0;
 }
 
-a:hover{text-decoration: underline;}
+a:hover{text-decoration: none;}
 input:focus{outline: none;}
 
 /* Inisio de Sesión */
@@ -1035,130 +1035,40 @@ input:focus{outline: none;}
 
 .edit .session-form{width: 100%;}
 
-
-.boton-mandar-carrito{
-    border-radius: 20px;
-    background-color: #FF936B;
-    color:#000;
+.botones-compra{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
-.btn-comprar-ahora{
-    display: inline-block;
-    padding: 5px 10px;
-    background-color: #FF936B; 
-    color:#000;
-    border: 1px solid black;
-    border-radius: 20px;
+.boton-compra{
     text-decoration: none;
+    border: none;
+    color: white;
     font-weight: bold;
-    cursor: pointer;
+    background-color: var(--base);
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 0 5px rgba(255, 68, 0, 0.2);
     transition: background-color 0.3s ease;
-
 }
 
-.titulo-confirmacion-compra{
-    text-align: center;
-}
-
-
-.informacion-compra {
-  max-width: 520px;
-  padding: 10px 25px;
-  border-radius: 20px;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.07);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  box-sizing: border-box;
-  border: 1px solid var(--clr-border);
-  float: none;
-  margin: 0 auto;
+.boton-compra:hover{
+    background-color: var(--base-claro);
+    transform: scale(1.05);
 }
 
 
-.informacion-compra label,
-.informacion-compra input[type="text"] {
-  font-family: var(--font-family);
+/* Formulario comprar-ahora */
+
+.detalle-compra{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.cap;
+    font-weight: bold;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
 }
 
-.informacion-compra label {
-  display: flex;
-  align-items: center;
-  width: 100px;
-  font-weight: 600;
-  color: var(--clr-text-primary);
-  user-select: none;
-  font-size: 1rem;
-  white-space: nowrap;
-  padding-right: 12px;
-  float: left;
-  margin-bottom: 16px;
-}
-
-.informacion-compra > br {
-  display: none;
-}
-
-.informacion-compra input[type="text"] {
-  width: calc(100% - 120px);
-  padding: 10px 16px;
-  font-size: 1rem;
-  border: 1.5px solid var(--clr-border);
-  border-radius: 10px;
-  background-color: #fafafa;
-  color: var(--clr-text-primary);
-  transition: border-color var(--transition);
-  box-sizing: border-box;
-  font-weight: 400;
-  float: right;
-  margin-bottom: 16px;
-}
-
-.informacion-compra input[type="text"]:focus {
-  outline: none;
-  border-color: var(--clr-primary);
-  box-shadow: 0 0 8px rgba(79, 70, 229, 0.3);
-}
-
-.informacion-compra p {
-  font-weight: 600;
-  font-size: 1.125rem;
-  color: var(--clr-text-secondary);
-  margin: 0;
-  padding-left: 4px;
-}
-
-.informacion-compra form {
-  margin-top: 8px;
-  display: flex;
-  justify-content: center;
-}
-
-.btn-primary {
-  padding: 14px 44px;
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: white;
-  background: #FF936B;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  box-shadow: #FF936B;
-  transition: background 0.3s ease, transform 0.25s ease;
-  user-select: none;
-  font-family: var(--font-family);
-  width: 100%;
-  max-width: 320px;
-}
-
-.btn-primary:hover,
-.btn-primary:focus {
-  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 20px rgba(67, 56, 202, 0.55);
-  outline: none;
-}
-.btn-primary:active {
-  transform: translateY(0);
-  box-shadow: 0 5px 12px rgba(67, 56, 202, 0.45);
-}

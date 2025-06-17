@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
 
+  before_action :authenticate_user!, only: [:formulario] 
+
   def index
     @seccion = params[:seccion] || "home"
     @grupos = Grupo.all
@@ -64,7 +66,20 @@ class PagesController < ApplicationController
   end
 
   def formulario
-     @producto = Product.find_by(id: params[:producto_id]) 
+    @seccion = "formulario"
+    @producto = Product.find(params[:id])
+    @usuario = current_user
+    render :index
   end
+
+  def create 
+    producto = Product.find(params[:producto_id])
+    pedido = Pedido.new(
+      user: current_user,
+      producto: producto,
+      cantidad: params[:cantidad],
+      total: producto.precio * params[:cantidad].to_i
+    )
+  end 
 
 end
