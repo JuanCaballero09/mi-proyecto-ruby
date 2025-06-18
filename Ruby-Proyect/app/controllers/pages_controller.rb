@@ -41,6 +41,8 @@ class PagesController < ApplicationController
   def carrito
     @seccion = "carrito"
     @carrito = session[:carrito] || []
+    producto_ids = @carrito.map { |item| item["id"] }
+      @productos_hash = Product.where(id: producto_ids).index_by(&:id)
     @total = @carrito.sum { |p| p["precio"].to_f * p["cantidad"] }
     render :index
   end

@@ -598,6 +598,7 @@ input:focus{outline: none;}
     flex-direction: row;
     gap: 10px;
     justify-content: space-between;
+    height: 100%;
 }
 
 .producto-info, .producto-comentarios{
@@ -608,9 +609,11 @@ input:focus{outline: none;}
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.producto-vista .botones-compra{
-    justify-content: center;
-    gap: 20px;
+.producto-aside .botones-compra{
+    align-items: center;
+    flex-direction: column-reverse;
+    gap: 10px;
+
 }
 
 /* Dashboard */

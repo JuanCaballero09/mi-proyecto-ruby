@@ -11,6 +11,14 @@
       <p>&starf;&starf;&starf;&starf;&star; </p>
     </div>
 
+    <div class = "botones-compra">
+      <%= form_with url: agregar_al_carrito_path, method: :post do %>
+        <%= hidden_field_tag :producto_id, @producto.id %>
+        <%= submit_tag "Agregar al Carrito", class: "boton-compra"%>
+      <% end %>
+      <%= link_to "Comprar ahora", formulario_path(@producto.id), class: 'boton-compra' %>
+    </div>
+
   </aside>
   <article class="producto-vista">
     <div class="producto-detalles">
@@ -49,14 +57,6 @@
 
     </div>
 
-
-    <div class = "botones-compra">
-      <%= form_with url: agregar_al_carrito_path, method: :post do %>
-        <%= hidden_field_tag :producto_id, @producto.id %>
-        <%= submit_tag "Agregar al Carrito", class: "boton-compra"%>
-      <% end %>
-      <%= link_to "Comprar ahora", formulario_path(@producto.id), class: 'boton-compra' %>
-    </div>
   </article>
 
 </section>
