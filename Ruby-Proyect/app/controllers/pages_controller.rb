@@ -60,9 +60,9 @@ class PagesController < ApplicationController
         "cantidad" => 1
       }
     end
-    total = session[:carrito].sum { |i| i["cantidad"] }
+    total = session[:carrito].sum { |i| i["cantidad"] } # Encargado del contador de los productos que hay en el carrito.
 
-    render json: { status: "ok", total_productos: total }
+    render json: { status: "ok", total_productos: total } # Respuesta de cuando un producto es mandado al carrito.
   end
 
   def eliminar_del_carrito
