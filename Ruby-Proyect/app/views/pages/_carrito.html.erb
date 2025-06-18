@@ -36,14 +36,6 @@
                         <% end %>
                     </td>
                     
-                    <td>
-                        <%# Para subir la cantidad de productos%>
-                        <%= button_to "+", aumentar_path(producto_id: item["producto_id"]), method: :post%>
-
-                        <%# Para bajar la cantidad de productos%>
-                        <%= button_to "-", disminuir_path(producto_id: item["producto_id"]), method: :post%>
-
-                    </td>
                 </tr>
             <% end %>   
     </tbody>

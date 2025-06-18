@@ -43,28 +43,6 @@ class PagesController < ApplicationController
     render :index
   end
 
-  def aumentar
-    modificar_cantidad(params[:producto_id],+1)
-    redirect_to carrito_path
-  end
-
-  def disminuir
-    modificar_cantidad(params[:producto_id],-1)
-    redirect_to carrito_path
-  end
-
-  def modificar_cantidad
-    carrito = session[:carrito] || []
-    carrito.each do |item|
-      if item ["producto_id"].to_i == producto_id.to_i
-        item["cantidad"] +=cambio
-        break
-        session[:carrito] = carrito
-       redirect_to carrito_path
-      end
-    end
-  end
-
   def agregar_al_carrito
     session[:carrito] ||= []
     producto_id = params[:producto_id].to_i
@@ -82,6 +60,9 @@ class PagesController < ApplicationController
         "cantidad" => 1
       }
     end
+    total = session[:carrito].sum { |i| i["cantidad"] }
+
+    render json: { status: "ok", total_productos: total }
   end
 
   def eliminar_del_carrito

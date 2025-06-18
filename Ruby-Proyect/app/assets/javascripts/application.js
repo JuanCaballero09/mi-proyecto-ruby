@@ -33,3 +33,31 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 });
+
+// para que la pagina no se recargue 
+document.addEventListener("DOMContentLoaded", function(){
+  document.querySelectorAll(".form-agregar-carrito").forEach(form =>{
+    form.addEventListener("submit", function(event){
+      event.preventDefault(); // Parametro de que impide a que se actualice la pagina.
+
+      const formData = new FormData(form);
+
+      fetch(form.action,{
+        method: "POST",
+        headers:{
+          "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data =>{
+        console.log("Producto agregado al carrito", data)
+
+        const contador = document.getElementById("contador-carrito");
+        if (contador && data.total_productos !== undefined){
+          contador.textContent= data.total_productos;
+        }
+      })
+    });
+  });
+});
