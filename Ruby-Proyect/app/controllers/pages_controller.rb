@@ -33,7 +33,7 @@ class PagesController < ApplicationController
   end
 
   def productos
-    @seccion = "producto"
+    @seccion = "productos"
     @producto = Product.find(params[:id])
     render :index
   end

@@ -12,7 +12,8 @@ Rails.application.routes.draw do
 
   get "editar", to: "pages#edit", as: "edit"
   get "menu", to: "pages#menu", as: "menu"
-  get "grupo/:nombre", to: "pages#grupo", as: "productos_por_grupo"
+  get "categoria/:nombre", to: "pages#grupo", as: "productos_por_grupo"
+  get "producto/:id", to: "pages#productos", as: "producto"
 
   resources :pedidos, only: [:create] # rubocop:disable Layout/SpaceInsideArrayLiteralBrackets
   namespace :dashboard do
