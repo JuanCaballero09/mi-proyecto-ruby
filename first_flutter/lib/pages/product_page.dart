@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'menu_page.dart';
-import 'login_page.dart';
+import 'home_Page.dart';
 
 
 class ProductPage extends StatefulWidget {
@@ -22,7 +22,7 @@ class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
     final pages = [
-      const Center(child: Text('inicio (en construcción)')),
+      HomePage(),
       const MenuPage(),
       const Center(child: Text('Carrito (en construcción)')),
       const Center(child: Text('Perfil (en construcción)')),
