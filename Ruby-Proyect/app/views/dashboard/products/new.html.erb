@@ -35,7 +35,7 @@
 
   <div>
     <%= f.label :imagen %>
-    <%= f.file_field :imagen %>
+    <%= f.file_field :imagen, accept: 'image/*', id: 'imagen-input'%>
   </div>
 
   <div class="checkbox-container">
@@ -47,3 +47,21 @@
     <%= f.submit "Crear producto" %>
   </div>
 <% end %>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const input = document.getElementById("imagen-input");
+
+    if (input) {
+      input.addEventListener("change", function () {
+        const file = this.files[0];
+
+        if (file && !file.type.startsWith("image/")) {
+          alert("Por favor selecciona solo archivos de imagen.");
+          this.value = ""; // limpia el campo
+        }
+      });
+    }
+  });
+</script>

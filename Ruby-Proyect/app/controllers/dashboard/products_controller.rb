@@ -41,11 +41,15 @@ class Dashboard::ProductsController < ApplicationController
     end
   end
 
-  def toggle_disponibilidad
-    @product = Product.find(params[:id])
-    @product.update(disponible: !@product.disponible)
-    redirect_to dashboard_products_path, notice: "Estado actualizado"
-  end
+    def toggle_disponibilidad
+      @product = Product.find(params[:id])
+      @product.update(disponible: !@product.disponible)
+
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to dashboard_products_path }
+      end
+    end
 
 
   private

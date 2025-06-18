@@ -497,9 +497,9 @@ input:focus{outline: none;}
 
 .carta img {
     object-fit: cover;
-    width: 300px;
-    height: 180px;
-    border-radius: 5px;
+    width: 80%;
+    aspect-ratio: 4 / 3;
+    border-radius: 10px;
 }
 
 .cartas {
@@ -799,9 +799,19 @@ input:focus{outline: none;}
     background: #f9f9f9;
     border: 1px solid #ccc;
     border-radius: 10px;
-    padding: 10px;
-
+    padding: 15px;
 }
+
+.product-card img {
+    display: block;
+    text-align: center;
+    object-fit: cover;
+    margin: 0 auto;
+    width: 250px;
+    aspect-ratio: 4 / 3;
+    border-radius: 15px;
+}
+
 
 .product-card p{
     margin: 5px 0; 
