@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
-
-  before_action :authenticate_user!, only: [:formulario] 
+  before_action :authenticate_user!, only: [ :formulario ]
 
   def index
     @seccion = params[:seccion] || "home"
@@ -12,8 +11,8 @@ class PagesController < ApplicationController
     render :index
   end
 
-  def productos
-    @seccion = "productos"
+  def grupo
+    @seccion = "grupo"
     nombre_param = params[:nombre].tr("-", " ")
     @grupo = Grupo.find_by("LOWER(nombre) = ?", nombre_param.downcase)
     @productos = @grupo.products.where(disponible: true).order(id: :asc)
@@ -30,6 +29,12 @@ class PagesController < ApplicationController
   def menu
     @seccion = "menu"
     @grupos = Grupo.includes(:products)
+    render :index
+  end
+
+  def productos
+    @seccion = "producto"
+    @producto = Product.find(params[:id])
     render :index
   end
 
@@ -62,7 +67,7 @@ class PagesController < ApplicationController
   def eliminar_del_carrito
     producto_id = params[:producto_id].to_i
     session[:carrito] ||= []
-    session[:carrito].delete_if {|item| item["id"] == producto_id }
+    session[:carrito].delete_if { |item| item["id"] == producto_id }
   end
 
   def formulario
@@ -72,7 +77,7 @@ class PagesController < ApplicationController
     render :index
   end
 
-  def create 
+  def create
     producto = Product.find(params[:producto_id])
     pedido = Pedido.new(
       user: current_user,
@@ -80,6 +85,5 @@ class PagesController < ApplicationController
       cantidad: params[:cantidad],
       total: producto.precio * params[:cantidad].to_i
     )
-  end 
-
+  end
 end

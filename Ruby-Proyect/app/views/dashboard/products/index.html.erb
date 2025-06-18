@@ -5,7 +5,8 @@
     <div class="product-card">
       <h3><%= product.nombre %></h3>
       <p>id: <%= product.id %></p>
-      <p>Contenido: <%= product.descripcion %></p>
+      <p><strong>Ingredientes:</strong> <%= product.ingredientes.join(", ") %></p>
+      <p>Descripción: <%= product.descripcion %></p>
       <p>Precio: $<%= product.precio %></p>
 
       <div class="estado">

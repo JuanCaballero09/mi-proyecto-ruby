@@ -5,26 +5,44 @@
     <%= f.label :nombre %>
     <%= f.text_field :nombre %>
   </div>
+
   <div>
     <%= f.label :precio %>
     <%= f.number_field :precio, step: 0.01 %>
   </div>
+
+  <div>
+    <%= f.label :ingredientes, "Ingredientes" %><br>
+    <div style="border: 1px solid #ccc; padding: 10px; height: 150px; overflow-y: auto; border-radius: 5px;" class="ingredientes-list">
+      <% Product::INGREDIENTES_DISPONIBLES.each do |ingrediente| %>
+        <label>
+          <%= check_box_tag "product[ingredientes][]", ingrediente, @product.ingredientes.include?(ingrediente) %>
+          <%= ingrediente %>
+        </label>
+      <% end %>
+    </div>
+  </div>
+
   <div>
     <%= f.label :descripcion %>
     <%= f.text_area :descripcion %>
   </div>
+
   <div>
     <%= f.label :grupo_id, "Grupo" %>
     <%= f.collection_select :grupo_id, Grupo.all, :id, :nombre %>
   </div>
+
   <div>
     <%= f.label :imagen %>
     <%= f.file_field :imagen %>
   </div>
+
   <div class="checkbox-container">
     <%= f.label :disponible %>
     <%= f.check_box :disponible %>
   </div>
+
   <div>
     <%= f.submit "Crear producto" %>
   </div>

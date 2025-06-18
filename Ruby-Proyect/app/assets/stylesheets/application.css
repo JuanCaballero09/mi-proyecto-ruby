@@ -120,6 +120,26 @@ input:focus{outline: none;}
     width: 100%;
 }
 
+.return-btn {
+  margin-bottom: 40px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.return-btn a {
+  text-decoration: none;
+  padding: 8px 16px;
+  background-color: #eeeeee;
+  color: #333;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.return-btn a:hover {
+  background-color: #dddddd;
+}
+
 .session-footer{
     display: flex;
     flex-direction: column;
@@ -857,6 +877,20 @@ input:focus{outline: none;}
     max-height: 150px;
     overflow-y: auto;
     padding-right: 10px;
+}
+
+.ingredientes-list input[type="checkbox"]{
+    width: 20px;
+    height: 20px;
+    accent-color: var(--base);
+    margin-right: 10px;
+}
+
+.ingredientes-list label{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 /* Carrito */

@@ -11,7 +11,7 @@ class User < ApplicationRecord
   after_initialize :set_defaults, if: :new_record?
 
   def set_defaults
-    self.rol ||= ':cliente'
+    self.rol ||= ":cliente"
     self.activo ||= true if activo.nil?
     self.fecha_registro ||= Date.today
   end

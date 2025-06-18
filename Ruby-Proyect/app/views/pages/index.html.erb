@@ -27,8 +27,8 @@
    
     <% if current_user %>
         <div class="user">
-            <%= link_to image_tag("icons/user-solid.svg", alt: "Perfil"), edit_path%>
             <%= link_to image_tag("icons/cart-shopping-solid.svg", alt: "Carrito"), carrito_path %>
+            <%= link_to image_tag("icons/user-solid.svg", alt: "Perfil"), edit_path%>
             <div class="btn-user">
                 <%= button_to "Cerrar sesión", destroy_user_session_path, method: :delete, form: { "data-turbo-confirm": "¿Estás seguro que quieres cerrar sesión?" } %>
             </div>

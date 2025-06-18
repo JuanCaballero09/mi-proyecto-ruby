@@ -1,3 +1,4 @@
+
 <h2>Editar Producto</h2>
 
 <%= form_with model: [:dashboard, @product], local: true, html: { class: "dashboard-form" } do |form| %>
@@ -9,6 +10,18 @@
   <div>
     <%= form.label :precio %>
     <%= form.number_field :precio, step: 0.01, value: @product.precio %>
+  </div>
+
+  <div>
+    <%= form.label :ingredientes, "Ingredientes" %><br>
+    <div style="border: 1px solid #ccc; padding: 10px; height: 150px; overflow-y: auto; border-radius: 5px;" class="ingredientes-list">
+      <% Product::INGREDIENTES_DISPONIBLES.each do |ingrediente| %>
+        <label>
+          <%= check_box_tag "product[ingredientes][]", ingrediente, @product.ingredientes.include?(ingrediente) %>
+          <%= ingrediente %>
+        </label>
+      <% end %>
+    </div>
   </div>
 
   <div>
