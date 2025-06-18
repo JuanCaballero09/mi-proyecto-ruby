@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'menu_page.dart';
 import 'home_Page.dart';
 
-
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key});
 
@@ -29,7 +28,11 @@ class _ProductPageState extends State<ProductPage> {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('La Terrraza Del Pri')),
+      appBar: AppBar(
+        title: const Text('Bitevia software'),
+        automaticallyImplyLeading: false,
+      ),
+
       body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
@@ -38,9 +41,7 @@ class _ProductPageState extends State<ProductPage> {
         unselectedItemColor: Colors.grey,
 
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home), 
-            label: 'Inicio'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
 
           BottomNavigationBarItem(
             icon: Icon(Icons.restaurant_menu),
@@ -50,13 +51,9 @@ class _ProductPageState extends State<ProductPage> {
             icon: Icon(Icons.shopping_cart),
             label: 'Carrito',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person), 
-            label: 'Perfil'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Perfil'),
         ],
       ),
     );
   }
 }
-
-
