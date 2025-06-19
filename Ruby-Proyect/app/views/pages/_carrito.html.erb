@@ -41,9 +41,9 @@
                             <%= submit_tag "Eliminar", class: "btn-eliminar" %>
                         <% end %>
                     </td>
-    
+                    
                 </tr>
-            <% end %>
+            <% end %>   
     </tbody>
     </table>
 
@@ -55,7 +55,7 @@
     <div class="cart-total">
         <span>Total a pagar</span>
         <span class="total-amount">
-            <%= number_to_currency(total, unit: "", separator: ".", delimiter: ".") %>
+            <%= number_to_currency(total, unit: "$", separator: ",", delimiter: ".") %>
         </span>
     </div>
     <button class="order-button">Pagar</button>

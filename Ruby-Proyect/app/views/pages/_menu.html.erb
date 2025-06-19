@@ -1,6 +1,6 @@
 <% productos_existentes = @grupos.any? { |grupo| grupo.products.select(&:disponible).any? } %>
 
-<% if productos_existentes %>
+  <% if productos_existentes %>
   <% @grupos.each do |grupo| %>
     <% productos_disponibles = grupo.products.where(disponible: true).order(id: :asc) %>
     <% if productos_disponibles.any? %>
@@ -19,7 +19,7 @@
                   <p><strong><%= number_to_currency(producto.precio, unit: "COP ", separator: ",", delimiter: ".", precision: 0) %> $</strong></p>
                 <% end %>
                 <div class = "botones-compra">
-                  <%= form_with url: agregar_al_carrito_path, method: :post do %>
+                  <%= form_with url: agregar_al_carrito_path, method: :post, html: { class: "form-agregar-carrito", data: { turbo: false } } do %>
                     <%= hidden_field_tag :producto_id, producto.id %>
                     <%= submit_tag "Agregar al Carrito", class: "boton-compra"%>
                   <% end %>

@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :authenticate_user!, only: [ :formulario ]
+ before_action :authenticate_user!, only: [ :formulario ]
 
   def index
     @seccion = params[:seccion] || "home"
@@ -11,8 +11,8 @@ class PagesController < ApplicationController
     render :index
   end
 
-  def grupo
-    @seccion = "grupo"
+  def productos
+    @seccion = "productos"
     nombre_param = params[:nombre].tr("-", " ")
     @grupo = Grupo.find_by("LOWER(nombre) = ?", nombre_param.downcase)
     @productos = @grupo.products.where(disponible: true).order(id: :asc)
@@ -32,18 +32,13 @@ class PagesController < ApplicationController
     render :index
   end
 
-  def productos
-    @seccion = "productos"
-    @producto = Product.find(params[:id])
-    render :index
-  end
-
   def carrito
     @seccion = "carrito"
     @carrito = session[:carrito] || []
-    producto_ids = @carrito.map { |item| item["id"] }
-      @productos_hash = Product.where(id: producto_ids).index_by(&:id)
-    @total = @carrito.sum { |p| p["precio"].to_f * p["cantidad"] }
+    @total = @carrito.sum do |p|
+      precio = p["precio"].to_s.gsub(".", "").to_f
+      precio * p["cantidad"].to_f
+    end
     render :index
   end
 
@@ -64,6 +59,9 @@ class PagesController < ApplicationController
         "cantidad" => 1
       }
     end
+    total = session[:carrito].sum { |i| i["cantidad"] } # Encargado del contador de los productos que hay en el carrito.
+
+    render json: { status: "ok", total_productos: total } # Respuesta de cuando un producto es mandado al carrito.
   end
 
   def eliminar_del_carrito
@@ -81,7 +79,7 @@ class PagesController < ApplicationController
 
   def create
     producto = Product.find(params[:producto_id])
-    pedido = Pedido.new(
+    Pedido.new(
       user: current_user,
       producto: producto,
       cantidad: params[:cantidad],

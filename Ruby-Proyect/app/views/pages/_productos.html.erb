@@ -1,62 +1,31 @@
-<section class="producto">
-  <aside class="producto-aside">
-    <% if @producto.imagen.attached? %>
-      <%= image_tag(@producto.imagen, alt: @producto.nombre ) %>
-    <% else %>
-      <%= image_tag('LogoLogoText2.svg', alt: 'Producto sin imagen') %>
-    <% end %>
+<div class="grupo">
+  <h2>Productos de <%= @grupo.nombre %></h2>
 
-    <div>
-      <h2>Calificación</h2>
-      <p>&starf;&starf;&starf;&starf;&star; </p>
+  <% if @productos.any? %>
+    <div class="cartas">
+      <% @productos.each do |producto| %>
+        
+
+            <div class="carta">
+                <%= image_tag(producto.imagen.attached? ? producto.imagen : "LogoLogoText2.svg") %>
+                <h4><%= producto.nombre %></h4>
+                <p><%= producto.descripcion %></p>
+                <p><strong><%= number_to_currency(producto.precio, unit: "COP ", separator: ",", delimiter: ".", precision: 0) %> $</strong></p>
+                <div class = "botones-compra">
+                  <%= form_with url: agregar_al_carrito_path, method: :post, html: { class: "form-agregar-carrito", data: { turbo: false } } do %>
+                    <%= hidden_field_tag :producto_id, producto.id %>
+                    <%= submit_tag "Agregar al Carrito", class: "boton-compra"%>
+                  <% end %>
+                  <%= link_to "Comprar ahora", formulario_path(producto.id), class: 'boton-compra' %>
+                </div>
+            </div>
+
+        <% end %>
     </div>
-
-    <div class = "botones-compra">
-      <%= form_with url: agregar_al_carrito_path, method: :post do %>
-        <%= hidden_field_tag :producto_id, @producto.id %>
-        <%= submit_tag "Agregar al Carrito", class: "boton-compra"%>
-      <% end %>
-      <%= link_to "Comprar ahora", formulario_path(@producto.id), class: 'boton-compra' %>
+  <% else %>
+    <div class="sin-productos">
+      <%= image_tag "ProductoNoDisponible.png", alt: "Producto No Disponible" %>
+      <h2>No hay productos disponibles por ahora.</h2>
     </div>
-
-  </aside>
-  <article class="producto-vista">
-    <div class="producto-detalles">
-      <div class="producto-info">
-        <h1><%= @producto.nombre %></h1>
-        <p><%= @producto.descripcion %></p>
-
-        <div>
-          <h3>Precio</h3>
-          <p>$<%= @producto.precio %></p>
-        </div>
-
-        <div>
-          <h3>Ingredientes</h3>
-          <ul>
-            <% @producto.ingredientes.each do |ingrediente| %>
-              <li><%= ingrediente %></li>
-            <% end %>
-          </ul>
-        </div>
-
-        <div>
-          <h3>Categoría</h3>
-          <p><%= @producto.grupo.nombre %></p>
-        </div>
-      </div>
-   
-      <div class="producto-comentarios">
-        <h3>Opiniones</h3>
-        <ul>
-          <li>“Muy rica y jugosa” – Ana</li>
-          <li>“Me encantó la combinación” – Luis</li>
-        </ul>
-      </div>
-
-
-    </div>
-
-  </article>
-
-</section>
+  <% end %>
+</div>
