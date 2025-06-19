@@ -20,9 +20,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const password = document.querySelector("#user_password");
     const flashAlert = document.querySelector(".alert-danger");
 
-    // Ocultar alerta al principio si no hay datos ingresados
-    if ((!email.value || !password.value) && flashAlert) {
-      flashAlert.style.display = "none";
+    if(form && email && password){
+        // Ocultar alerta al principio si no hay datos ingresados
+      if ((!email.value || !password.value) && flashAlert) { 
+        flashAlert.style.display = "none";
+      }
     }
 
     form.addEventListener("submit", function (e) {
