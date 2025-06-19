@@ -1,6 +1,5 @@
 class Dashboard::ProductsController < ApplicationController
-
-  layout 'dashboard' 
+  layout "dashboard"
 
   before_action :authenticate_user!
   before_action :check_admin
@@ -26,7 +25,7 @@ class Dashboard::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to dashboard_products_path, 
+      redirect_to dashboard_products_path,
       notice: "El producto fue creado exitosamente."
     else
       render :new
@@ -42,11 +41,15 @@ class Dashboard::ProductsController < ApplicationController
     end
   end
 
-  def toggle_disponibilidad
-    @product = Product.find(params[:id])
-    @product.update(disponible: !@product.disponible)
-    redirect_to dashboard_products_path, notice: "Estado actualizado"
-  end
+    def toggle_disponibilidad
+      @product = Product.find(params[:id])
+      @product.update(disponible: !@product.disponible)
+
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to dashboard_products_path }
+      end
+    end
 
 
   private
@@ -56,13 +59,22 @@ class Dashboard::ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:nombre, :precio, :descripcion, :imagen, :grupo_id, :disponible)
+    params.require(:product).permit(
+      :nombre,
+      :precio,
+      :descripcion,
+      :imagen,
+      :grupo_id,
+      :disponible,
+      :calificacion,
+      ingredientes: [] # ← este permite el array de ingredientes
+    )
   end
+
 
   def check_admin
     unless current_user.admin? # Verifica si el usuario tiene rol de admin
       redirect_to root_path, alert: "No tienes acceso a esta página."
     end
   end
-
 end

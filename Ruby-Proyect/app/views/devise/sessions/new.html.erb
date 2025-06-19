@@ -18,10 +18,13 @@
         </a>
       </div>
       <p>© 2025 Bitevia Software. Todos los derechos reservados.</p>
+
     </footer>
   </div>
   
   <div class="right-side">
+
+    <p class="return-btn"><%= link_to "← Volver al inicio", root_path %></p>
 
     <% if flash[:alert] %>
       <div class="alert alert-danger"><%= flash[:alert] %></div>

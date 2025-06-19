@@ -1,3 +1,4 @@
+
 <h2>Editar Producto</h2>
 
 <%= form_with model: [:dashboard, @product], local: true, html: { class: "dashboard-form" } do |form| %>
@@ -12,13 +13,25 @@
   </div>
 
   <div>
+    <%= form.label :ingredientes, "Ingredientes" %><br>
+    <div style="border: 1px solid #ccc; padding: 10px; height: 150px; overflow-y: auto; border-radius: 5px;" class="ingredientes-list">
+      <% Product::INGREDIENTES_DISPONIBLES.each do |ingrediente| %>
+        <label>
+          <%= check_box_tag "product[ingredientes][]", ingrediente, @product.ingredientes.include?(ingrediente) %>
+          <%= ingrediente %>
+        </label>
+      <% end %>
+    </div>
+  </div>
+
+  <div>
     <%= form.label :descripcion %>
     <%= form.text_area :descripcion, value: @product.descripcion %>
   </div>
 
   <div>
     <%= form.label :imagen %>
-    <%= form.file_field :imagen, value: @product.imagen %>
+    <%= form.file_field :imagen, value: @product.imagen, accept: 'image/*', id: 'imagen-input' %>
   </div>
 
   <div>
@@ -35,3 +48,19 @@
   <%= link_to 'Volver', dashboard_products_path %>
 <% end %>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const input = document.getElementById("imagen-input");
+
+    if (input) {
+      input.addEventListener("change", function () {
+        const file = this.files[0];
+
+        if (file && !file.type.startsWith("image/")) {
+          alert("Por favor selecciona solo archivos de imagen.");
+          this.value = ""; // limpia el campo
+        }
+      });
+    }
+  });
+</script>

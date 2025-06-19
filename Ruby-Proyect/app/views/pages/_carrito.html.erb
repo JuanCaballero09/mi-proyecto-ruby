@@ -18,10 +18,16 @@
             <% @carrito.each do |item| %>
                 <% subtotal = item["precio"].to_f * item ["cantidad"].to_i %>
                 <% total += subtotal%>
+                <% producto = @productos_hash[item["id"]] %>
+                
                 <tr>
                     <td>
                         <div class="item-details">
-                            <%= image_tag "LogoLogoText2.svg", class: "product-thumbnail" %>
+                            <% if producto&.imagen&.attached? %>
+                                <%= image_tag(producto.imagen, class: "product-thumbnail", alt: producto.nombre) %>
+                            <% else %>
+                                <%= image_tag("LogoLogoText2.svg", class: "product-thumbnail", alt: "Producto sin imagen") %>
+                            <% end %>
                             <span><% item["nombre"]%></span>
                         </div>
                     </td>
