@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
-
-  before_action :authenticate_user!, only: [:formulario] 
+ before_action :authenticate_user!, only: [ :formulario ]
 
   def index
     @seccion = params[:seccion] || "home"
@@ -37,9 +36,9 @@ class PagesController < ApplicationController
     @seccion = "carrito"
     @carrito = session[:carrito] || []
     @total = @carrito.sum do |p|
-      precio = p["precio"].to_s.gsub(".","").to_f
+      precio = p["precio"].to_s.gsub(".", "").to_f
       precio * p["cantidad"].to_f
-    end 
+    end
     render :index
   end
 
@@ -68,7 +67,7 @@ class PagesController < ApplicationController
   def eliminar_del_carrito
     producto_id = params[:producto_id].to_i
     session[:carrito] ||= []
-    session[:carrito].delete_if {|item| item["id"] == producto_id }
+    session[:carrito].delete_if { |item| item["id"] == producto_id }
   end
 
   def formulario
@@ -78,14 +77,13 @@ class PagesController < ApplicationController
     render :index
   end
 
-  def create 
+  def create
     producto = Product.find(params[:producto_id])
-    pedido = Pedido.new(
+    Pedido.new(
       user: current_user,
       producto: producto,
       cantidad: params[:cantidad],
       total: producto.precio * params[:cantidad].to_i
     )
-  end 
-
+  end
 end
