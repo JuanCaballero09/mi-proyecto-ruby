@@ -31,15 +31,17 @@ class _ProductPageState extends State<ProductPage> {
       appBar: AppBar(
         title: const Text('Bitevia software'),
         automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xFFFF936B), // Fondo amarillo
+        backgroundColor: const Color(0xFFFF936B), 
       ),
 
       body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        selectedItemColor: const Color(0xFFFF936B),
-        unselectedItemColor: Colors.grey,
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.white,
+        backgroundColor: const Color(0xFFFF936B), 
 
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
