@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    if (form && email && passsword){
+    if (form && email && password){
         form.addEventListener("submit", function (e) {
       if (!email.value.trim() || !password.value.trim()) {
         e.preventDefault();
