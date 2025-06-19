@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'menu_page.dart';
-import 'login_page.dart';
-
+import 'home_Page.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key});
@@ -22,25 +21,28 @@ class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
     final pages = [
-      const Center(child: Text('inicio (en construcción)')),
+      HomePage(),
       const MenuPage(),
       const Center(child: Text('Carrito (en construcción)')),
       const Center(child: Text('Perfil (en construcción)')),
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('La Terrraza Del Pri')),
+      appBar: AppBar(
+        title: const Text('Bitevia software'),
+        automaticallyImplyLeading: false,
+        backgroundColor: const Color(0xFFFF936B), // Fondo amarillo
+      ),
+
       body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: const Color(0xFFFF936B),
         unselectedItemColor: Colors.grey,
 
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home), 
-            label: 'Inicio'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
 
           BottomNavigationBarItem(
             icon: Icon(Icons.restaurant_menu),
@@ -50,13 +52,10 @@ class _ProductPageState extends State<ProductPage> {
             icon: Icon(Icons.shopping_cart),
             label: 'Carrito',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person), 
-            label: 'Perfil'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Perfil'),
         ],
       ),
     );
   }
 }
-
 

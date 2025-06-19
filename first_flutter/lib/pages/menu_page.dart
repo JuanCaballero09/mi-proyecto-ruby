@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/product_bloc.dart';
 import '../bloc/product_event.dart';
 import '../bloc/product_state.dart';
-import '../models/product.dart';
 import 'product_detail_page.dart';
 
 class MenuPage extends StatefulWidget {
