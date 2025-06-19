@@ -27,13 +27,15 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    form.addEventListener("submit", function (e) {
+    if (form && email && passsword){
+        form.addEventListener("submit", function (e) {
       if (!email.value.trim() || !password.value.trim()) {
         e.preventDefault();
         alert("Por favor completa ambos campos antes de iniciar sesión.");
         if (flashAlert) flashAlert.style.display = "none";
       }
-    });
+    });  
+    }
 });
 
 // para que la pagina no se recargue 
