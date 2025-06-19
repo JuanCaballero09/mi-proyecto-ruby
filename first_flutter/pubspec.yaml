@@ -26,6 +26,7 @@ flutter:
   - assets/imagen1.jpeg
   - assets/imagen2.jpeg
   - assets/imagen3.jpeg
+  - assets/imagen4.png
   
 
 flutter_launcher_icons:
