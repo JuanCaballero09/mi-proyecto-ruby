@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/product_bloc.dart';
 import 'repository/product_repository.dart';
 import 'repository/http_product_repository.dart';
-import 'pages/login_page.dart';
+
 
 void main() {
   const String apiUrl =
@@ -47,8 +47,12 @@ class MyApp extends StatelessWidget {
             value: BlocProvider.of<ProductBloc>(context),
             child: const WelcomePage(),
           ),
-        },
-      ),
-    );
+   
   }
-}
+        ),
+     );
+    }
+  }
+    
+
+  

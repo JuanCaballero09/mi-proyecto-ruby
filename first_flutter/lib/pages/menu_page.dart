@@ -57,7 +57,7 @@ void initState() {
                   Text(
                     category.toUpperCase(),
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                          color: Colors.amber[900],
+                          color: const Color(0xFFFF936B),
                           fontWeight: FontWeight.bold,
                         ),
                   ),
