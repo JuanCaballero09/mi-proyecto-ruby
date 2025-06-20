@@ -1,13 +1,11 @@
 class Dashboard::DashboardController < ApplicationController
-  
-  layout 'dashboard' 
+  layout "dashboard"
 
-  before_action :authenticate_user! 
-  before_action :check_admin 
+  before_action :authenticate_user!
+  before_action :check_admin
 
 
   def index
-      
   end
 
   private

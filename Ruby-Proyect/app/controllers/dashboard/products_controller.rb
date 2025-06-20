@@ -41,15 +41,15 @@ class Dashboard::ProductsController < ApplicationController
     end
   end
 
-    def toggle_disponibilidad
-      @product = Product.find(params[:id])
-      @product.update(disponible: !@product.disponible)
+  def toggle_disponibilidad
+    @product = Product.find(params[:id])
+    @product.update(disponible: !@product.disponible)
 
-      respond_to do |format|
-        format.turbo_stream
-        format.html { redirect_to dashboard_products_path }
-      end
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to dashboard_products_path }
     end
+  end
 
 
   private
@@ -70,7 +70,6 @@ class Dashboard::ProductsController < ApplicationController
       ingredientes: [] # ← este permite el array de ingredientes
     )
   end
-
 
   def check_admin
     unless current_user.admin? # Verifica si el usuario tiene rol de admin
