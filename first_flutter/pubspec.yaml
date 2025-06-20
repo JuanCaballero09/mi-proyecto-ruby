@@ -27,7 +27,12 @@ flutter:
   - assets/imagen2.jpeg
   - assets/imagen3.jpeg
   - assets/imagen4.png
-  
+  - assets/imagen5.png
+  - assets/imagen6.png
+  - assets/facebook.png
+  - assets/instagram.png
+  - assets/whatsapp.png
+
 
 flutter_launcher_icons:
   android: true

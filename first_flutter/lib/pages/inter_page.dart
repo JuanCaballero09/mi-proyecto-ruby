@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'menu_page.dart';
 import 'home_Page.dart';
+import 'carrito_Page.dart';
+import 'perfil_Page.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key});
@@ -22,17 +24,12 @@ class _ProductPageState extends State<ProductPage> {
   Widget build(BuildContext context) {
     final pages = [
       HomePage(),
-      const MenuPage(),
-      const Center(child: Text('Carrito (en construcción)')),
-      const Center(child: Text('Perfil (en construcción)')),
+      MenuPage(),
+      CarritoPage(),
+      PerfilPage(),
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bitevia software'),
-        automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xFFFF936B), 
-      ),
 
       body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(

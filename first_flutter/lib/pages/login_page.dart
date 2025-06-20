@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'product_page.dart'; // Tu página principal con el menú
+import 'inter_page.dart'; // Tu página principal con el menú
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
