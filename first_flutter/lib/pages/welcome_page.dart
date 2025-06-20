@@ -7,8 +7,7 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFF936B)
-, // Fondo amarillo
+      backgroundColor: const Color(0xFFFF936B), // Fondo amarillo
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -17,21 +16,24 @@ class WelcomePage extends StatelessWidget {
             children: [
               // Imagen del logo
               Image.asset(
-                'assets/imagen4.png', // Asegúrate que esté en assets
-                height: 160,
+                'assets/imagen6.png', // Asegúrate que esté en assets
+                height: 110,
               ),
-              const SizedBox(height: 20),
 
               // Texto del título
               const Text(
-                'BITEVIA SOFTWARE',
+                'Bienvenido A Bitevia',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, fontFamily:'Arial', ),
               ),
-              const SizedBox(height: 40),
+  
+
+              const Text(
+                '¡Y Disfruta De Una Experiencia Única!',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, fontFamily:'Arial'),
+              ),
+              const SizedBox(height: 15),
 
               // Botón Iniciar Sesión
               SizedBox(
@@ -39,8 +41,10 @@ class WelcomePage extends StatelessWidget {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const LoginPage()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const LoginPage()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
@@ -54,7 +58,7 @@ class WelcomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 10),
 
               // Botón Registrarse
               SizedBox(
@@ -65,8 +69,8 @@ class WelcomePage extends StatelessWidget {
                     // A futuro: Navegar a RegisterPage()
                   },
                   style: OutlinedButton.styleFrom(
+                    backgroundColor: Colors.white,
                     foregroundColor: Colors.black,
-                    side: const BorderSide(color: Colors.black),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -83,5 +87,6 @@ class WelcomePage extends StatelessWidget {
       ),
     );
   }
-}
 
+  
+}

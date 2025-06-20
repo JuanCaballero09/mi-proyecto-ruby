@@ -28,7 +28,27 @@ void initState() {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProductBloc, ProductState>(
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        backgroundColor: const Color(0xFFFF936B),
+        title: Center(
+          child:(
+            Image.asset(
+              "assets/imagen5.png",
+              width: 170,
+
+
+            )
+          ),
+        ), 
+
+
+
+      ),
+
+    body: BlocBuilder<ProductBloc, ProductState>(
       builder: (context, state) {
         if(state is ProductInitial || state is ProductLoading) {
           return const Center(child: CircularProgressIndicator(),);
@@ -107,6 +127,8 @@ void initState() {
           return const Center(child: Text('Estado desconocido'));
         }
       },
+    ),
+
     );
   }
 
