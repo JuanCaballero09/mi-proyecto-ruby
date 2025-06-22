@@ -13,6 +13,12 @@ class PagesController < ApplicationController
 
   def productos
     @seccion = "productos"
+    @producto = Product.find(params[:id])
+    render :index
+  end
+
+  def grupo
+    @seccion = "grupo"
     nombre_param = params[:nombre].tr("-", " ")
     @grupo = Grupo.find_by("LOWER(nombre) = ?", nombre_param.downcase)
     @productos = @grupo.products.where(disponible: true).order(id: :asc)
@@ -35,10 +41,9 @@ class PagesController < ApplicationController
   def carrito
     @seccion = "carrito"
     @carrito = session[:carrito] || []
-    @total = @carrito.sum do |p|
-      precio = p["precio"].to_s.gsub(".", "").to_f
-      precio * p["cantidad"].to_f
-    end
+    producto_ids = @carrito.map { |item| item["id"] }
+      @productos_hash = Product.where(id: producto_ids).index_by(&:id)
+    @total = @carrito.sum { |p| p["precio"].to_f * p["cantidad"] }
     render :index
   end
 
