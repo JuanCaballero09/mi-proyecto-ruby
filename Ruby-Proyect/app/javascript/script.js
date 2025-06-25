@@ -74,3 +74,24 @@ document.addEventListener("turbo:load", function () {
     });
   });
 });
+
+
+// ========================================================
+// 🛒 LÓGICA CONTADOR CARRITO: Mostrar cuantos productos hay
+// ========================================================
+
+function agregarAlCarrito(producto_id) {
+  fetch('/agregar_al_carrito?producto_id=${productoId}', {
+    method:  'POST',
+    headers:{
+      'X-CSRF-Token' : document.querySelector('[name ="csrf-token"]').content
+    } 
+  })
+
+  .then(Response => response.json())
+  .then(data => {
+    if (data.status == ok){
+      document.getElementById("contador-carrito").textContent = `🛒 Carrito (${data.total_productos})`;
+    }
+  });
+}

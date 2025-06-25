@@ -14,7 +14,7 @@
 <nav class="navbar">
 
     <div class="links">
-
+        
         <%= link_to "Inicio", root_path %>
         <%= link_to "Menú", menu_path %>
         
@@ -35,9 +35,9 @@
         </div>
     <% else %>
         <div class="user">
+            <span id="contador-carrito">0</span>
             <%= link_to image_tag("icons/cart-shopping-solid.svg", alt: "Carrito", class: "carro"), carrito_path %>
             <div class="btn-user">
-
             <%= button_to "Iniciar Sesión", new_user_session_path %>
             </div>
         </div>
