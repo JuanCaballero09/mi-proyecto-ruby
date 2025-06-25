@@ -5,7 +5,7 @@ Product.destroy_all
 
 ActiveRecord::Base.connection.reset_pk_sequence!('grupos')
 
-puts "creando grupos"
+puts "Creando Grupos..."
 Grupo.create(nombre: "Grupo 1")
 Grupo.create(nombre: "Grupo 2")
 Grupo.create(nombre: "Grupo 3")
@@ -13,7 +13,7 @@ puts "Grupos creados #{Grupo.count}"
 
 ActiveRecord::Base.connection.reset_pk_sequence!('users')
 
-puts "creando usuarios"
+puts "Creando Usuario Admin..."
 User.create(
   email: "admin@admin",
   password: "rasdix-jePjor-kohsy6",
@@ -29,115 +29,37 @@ puts "Usuarios creados #{User.count}"
 
 ActiveRecord::Base.connection.reset_pk_sequence!('products')
 
-puts "creando productos"
-Product.create(
-  nombre: "Producto 1",
-  precio: 9900.0,
-  descripcion: "Descripción del producto 1",
-  disponible: true,
-  grupo_id: Grupo.find_by(nombre: "Grupo 1").id
-)
-Product.create(
-  nombre: "Producto 2",
-  precio: 99900.0,
-  descripcion: "Descripción del producto 2",
-  disponible: true,
-  grupo_id: Grupo.find_by(nombre: "Grupo 1").id
-)
-Product.create(
-  nombre: "Producto 3",
-  precio: 900.0,
-  descripcion: "Descripción del producto 3",
-  disponible: true,
-  grupo_id: Grupo.find_by(nombre: "Grupo 1").id
-)
-Product.create(
-  nombre: "Producto 4",
-  precio: 9999.0,
-  descripcion: "Descripción del producto 4",
-  disponible: true,
-  grupo_id: Grupo.find_by(nombre: "Grupo 1").id
-)
-Product.create(
-  nombre: "Producto 5",
-  precio: 9999.0,
-  descripcion: "Descripción del producto 5",
-  disponible: true,
-  grupo_id: Grupo.find_by(nombre: "Grupo 1").id
-)
+puts "Creando productos..."
 
+grupo1 = Grupo.find_by(nombre: "Grupo 1")
+grupo2 = Grupo.find_by(nombre: "Grupo 2")
+grupo3 = Grupo.find_by(nombre: "Grupo 3")
 
-Product.create(
-  nombre: "Producto 1",
-  precio: 9900.0,
-  descripcion: "Descripción del producto 1",
-  disponible: true,
-  grupo_id: Grupo.find_by(nombre: "Grupo 2").id
-)
-Product.create(
-  nombre: "Producto 2",
-  precio: 99900.0,
-  descripcion: "Descripción del producto 2",
-  disponible: true,
-  grupo_id: Grupo.find_by(nombre: "Grupo 2").id
-)
-Product.create(
-  nombre: "Producto 3",
-  precio: 900.0,
-  descripcion: "Descripción del producto 3",
-  disponible: true,
-  grupo_id: Grupo.find_by(nombre: "Grupo 2").id
-)
-Product.create(
-  nombre: "Producto 4",
-  precio: 9999.0,
-  descripcion: "Descripción del producto 4",
-  disponible: true,
-  grupo_id: Grupo.find_by(nombre: "Grupo 2").id
-)
-Product.create(
-  nombre: "Producto 5",
-  precio: 9999.0,
-  descripcion: "Descripción del producto 5",
-  disponible: true,
-  grupo_id: Grupo.find_by(nombre: "Grupo 2").id
-)
+# Productos Grupo 1
+Product.create(nombre: "Producto 1 (Grupo 1)", precio: 99999, descripcion: "Descripción producto 1", disponible: true, grupo_id: grupo1.id)
+Product.create(nombre: "Producto 2 (Grupo 1)", precio: 99999, descripcion: "Descripción producto 2", disponible: true, grupo_id: grupo1.id)
+Product.create(nombre: "Producto 3 (Grupo 1)", precio: 99999, descripcion: "Descripción producto 3", disponible: true, grupo_id: grupo1.id)
+Product.create(nombre: "Producto 4 (Grupo 1)", precio: 99999, descripcion: "Descripción producto 4", disponible: true, grupo_id: grupo1.id)
+Product.create(nombre: "Producto 5 (Grupo 1)", precio: 99999, descripcion: "Descripción producto 5", disponible: true, grupo_id: grupo1.id)
+Product.create(nombre: "Producto 6 (Grupo 1)", precio: 99999, descripcion: "Descripción producto 6", disponible: true, grupo_id: grupo1.id)
+Product.create(nombre: "Producto 7 (Grupo 1)", precio: 99999, descripcion: "Descripción producto 7", disponible: true, grupo_id: grupo1.id)
 
+# Productos Grupo 2
+Product.create(nombre: "Producto 1 (Grupo 2)", precio: 99999, descripcion: "Descripción producto 1", disponible: true, grupo_id: grupo2.id)
+Product.create(nombre: "Producto 2 (Grupo 2)", precio: 99999, descripcion: "Descripción producto 2", disponible: true, grupo_id: grupo2.id)
+Product.create(nombre: "Producto 3 (Grupo 2)", precio: 99999, descripcion: "Descripción producto 3", disponible: true, grupo_id: grupo2.id)
+Product.create(nombre: "Producto 4 (Grupo 2)", precio: 99999, descripcion: "Descripción producto 4", disponible: true, grupo_id: grupo2.id)
+Product.create(nombre: "Producto 5 (Grupo 2)", precio: 99999, descripcion: "Descripción producto 5", disponible: true, grupo_id: grupo2.id)
+Product.create(nombre: "Producto 6 (Grupo 2)", precio: 99999, descripcion: "Descripción producto 6", disponible: true, grupo_id: grupo2.id)
+Product.create(nombre: "Producto 7 (Grupo 2)", precio: 99999, descripcion: "Descripción producto 7", disponible: true, grupo_id: grupo2.id)
 
-Product.create(
-  nombre: "Producto 1",
-  precio: 9900.0,
-  descripcion: "Descripción del producto 1",
-  disponible: true,
-  grupo_id: Grupo.find_by(nombre: "Grupo 3").id
-)
-Product.create(
-  nombre: "Producto 2",
-  precio: 99900.0,
-  descripcion: "Descripción del producto 2",
-  disponible: true,
-  grupo_id: Grupo.find_by(nombre: "Grupo 3").id
-)
-Product.create(
-  nombre: "Producto 3",
-  precio: 900.0,
-  descripcion: "Descripción del producto 3",
-  disponible: true,
-  grupo_id: Grupo.find_by(nombre: "Grupo 3").id
-)
-Product.create(
-  nombre: "Producto 4",
-  precio: 9999.0,
-  descripcion: "Descripción del producto 4",
-  disponible: true,
-  grupo_id: Grupo.find_by(nombre: "Grupo 3").id
-)
-Product.create(
-  nombre: "Producto 5",
-  precio: 9999.0,
-  descripcion: "Descripción del producto 5",
-  disponible: true,
-  grupo_id: Grupo.find_by(nombre: "Grupo 3").id
-)
+# Productos Grupo 3
+Product.create(nombre: "Producto 1 (Grupo 3)", precio: 99999, descripcion: "Descripción producto 1", disponible: true, grupo_id: grupo3.id)
+Product.create(nombre: "Producto 2 (Grupo 3)", precio: 99999, descripcion: "Descripción producto 2", disponible: true, grupo_id: grupo3.id)
+Product.create(nombre: "Producto 3 (Grupo 3)", precio: 99999, descripcion: "Descripción producto 3", disponible: true, grupo_id: grupo3.id)
+Product.create(nombre: "Producto 4 (Grupo 3)", precio: 99999, descripcion: "Descripción producto 4", disponible: true, grupo_id: grupo3.id)
+Product.create(nombre: "Producto 5 (Grupo 3)", precio: 99999, descripcion: "Descripción producto 5", disponible: true, grupo_id: grupo3.id)
+Product.create(nombre: "Producto 6 (Grupo 3)", precio: 99999, descripcion: "Descripción producto 6", disponible: true, grupo_id: grupo3.id)
+Product.create(nombre: "Producto 7 (Grupo 3)", precio: 99999, descripcion: "Descripción producto 7", disponible: true, grupo_id: grupo3.id)
 
-puts "Productos creados #{Product.count}"
+puts "Productos creados: #{Product.count}"
