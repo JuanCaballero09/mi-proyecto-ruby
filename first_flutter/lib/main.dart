@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/product_bloc.dart';
 import 'repository/product_repository.dart';
 import 'repository/http_product_repository.dart';
+import 'pages/splash_page.dart ';
 
 
 void main() {
@@ -41,16 +42,16 @@ class MyApp extends StatelessWidget {
           ),
         ),
         initialRoute: '/',
-        routes: {
-          '/': (context) => const WelcomePage(),
-          '/home': (context) => BlocProvider.value(
-            value: BlocProvider.of<ProductBloc>(context),
-            child: const WelcomePage(),
-          ),
-   
-  }
-        ),
-     );
+       routes: {
+         '/': (context) => SplashPage(),
+         '/welcome': (context) => const WelcomePage(),
+         '/home': (context) => BlocProvider.value(
+        value: BlocProvider.of<ProductBloc>(context),
+         child: WelcomePage(), // o HomePage()
+      ),
+    }
+   ),
+   );
     }
   }
     
