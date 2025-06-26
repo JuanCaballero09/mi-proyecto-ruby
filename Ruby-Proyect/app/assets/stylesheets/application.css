@@ -1216,3 +1216,7 @@ input:focus{outline: none;}
     margin-bottom: 10px;
 }
 
+#contador-carrito{
+    color: white;
+}
+

@@ -35,7 +35,13 @@
         </div>
     <% else %>
         <div class="user">
+            <% total = session[:carrito]&.sum { |p| p["cantidad"] }  || 0 %>
+            <% if total > 0 %>
+                <span id= "contador-carrito"><%= total %></span>
+            <% else %>
             <span id="contador-carrito">0</span>
+            <% end %>
+
             <%= link_to image_tag("icons/cart-shopping-solid.svg", alt: "Carrito", class: "carro"), carrito_path %>
             <div class="btn-user">
             <%= button_to "Iniciar Sesión", new_user_session_path %>
