@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'login_page.dart';
-import 'package:first_flutter/pages/register_page.dart';
+
 
 
 class WelcomePage extends StatelessWidget {
@@ -31,7 +31,7 @@ class WelcomePage extends StatelessWidget {
   
 
               const Text(
-                '¡Y Disfruta De Una Experiencia Única!',
+                '¡Disfruta De Una Experiencia Única!',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, fontFamily:'Arial'),
               ),
