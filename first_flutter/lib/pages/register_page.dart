@@ -67,7 +67,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   validator: (value) =>
-                      value!.isEmpty ? 'Ingresa tu nombre' : null,
+                      value!.isEmpty ? 'Ingresa tu nombre y tu apellido' : null,
                 ),
                 const SizedBox(height: 15),
 
@@ -151,5 +151,6 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
       ),
     );
+          
   }
 }
