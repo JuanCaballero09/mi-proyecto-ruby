@@ -1,10 +1,14 @@
+import 'package:first_flutter/pages/login_page.dart';
 import 'package:first_flutter/pages/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/product_bloc.dart';
 import 'repository/product_repository.dart';
 import 'repository/http_product_repository.dart';
-import 'pages/splash_page.dart ';
+import 'pages/splash_page.dart';
+import 'package:first_flutter/pages/register_page.dart';
+  
+
 
 
 void main() {
@@ -45,6 +49,8 @@ class MyApp extends StatelessWidget {
        routes: {
          '/': (context) => SplashPage(),
          '/welcome': (context) => const WelcomePage(),
+         '/login': (context) => const LoginPage(),
+         '/register': (context) => const RegisterPage(),
          '/home': (context) => BlocProvider.value(
         value: BlocProvider.of<ProductBloc>(context),
          child: WelcomePage(), // o HomePage()

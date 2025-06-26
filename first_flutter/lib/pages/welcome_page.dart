@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'login_page.dart';
+import 'package:first_flutter/pages/register_page.dart';
+
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -66,6 +68,7 @@ class WelcomePage extends StatelessWidget {
                 height: 50,
                 child: OutlinedButton(
                   onPressed: () {
+                    Navigator.pushNamed(context, '/register');
                     // A futuro: Navegar a RegisterPage()
                   },
                   style: OutlinedButton.styleFrom(
