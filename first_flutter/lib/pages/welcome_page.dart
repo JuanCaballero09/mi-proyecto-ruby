@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'login_page.dart';
 
+
+
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
 
@@ -29,7 +31,7 @@ class WelcomePage extends StatelessWidget {
   
 
               const Text(
-                '¡Y Disfruta De Una Experiencia Única!',
+                '¡Disfruta De Una Experiencia Única!',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, fontFamily:'Arial'),
               ),
@@ -66,6 +68,7 @@ class WelcomePage extends StatelessWidget {
                 height: 50,
                 child: OutlinedButton(
                   onPressed: () {
+                    Navigator.pushNamed(context, '/register');
                     // A futuro: Navegar a RegisterPage()
                   },
                   style: OutlinedButton.styleFrom(

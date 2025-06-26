@@ -18,6 +18,7 @@ Widget build(BuildContext context) {
         child: Image.asset(
           'assets/imagen5.png',
               width: 170,
+              
         ),
       ),
     ),
