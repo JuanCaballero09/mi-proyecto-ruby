@@ -7,8 +7,19 @@ class PerfilPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Perfil'),
+       automaticallyImplyLeading: false,
         centerTitle: true,
+        backgroundColor: const Color(0xFFFF936B),
+        title: Center(
+          child:(
+            Image.asset(
+              "assets/imagen5.png",
+              width: 170,
+
+
+            )
+          ),
+        ),
       ),
       body: Center(
         child: ElevatedButton.icon(
