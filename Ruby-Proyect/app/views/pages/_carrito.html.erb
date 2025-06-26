@@ -36,12 +36,11 @@
 
 
                     <td>
-                        <%= form_with url: eliminar_del_carrito_path, method: :post do %>
+                        <%= form_with url: eliminar_del_carrito_path, method: :post do  %>
                             <%= hidden_field_tag :producto_id, item["id"] %>
                             <%= submit_tag "Eliminar", class: "btn-eliminar" %>
                         <% end %>
                     </td>
-                    
                 </tr>
             <% end %>   
     </tbody>
