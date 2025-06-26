@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:first_flutter/pages/welcome_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SplashPage extends StatefulWidget {
