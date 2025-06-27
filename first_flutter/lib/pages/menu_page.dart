@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
+
 import '../bloc/product_bloc.dart';
 import '../bloc/product_event.dart';
 import '../bloc/product_state.dart';
@@ -54,18 +56,14 @@ void initState() {
           return const Center(child: CircularProgressIndicator(),);
         } else if (state is ProductLoaded) {
           final categories = [
-            'perro',
             'hamburguesa',
-            'salchipapa',
-            'salvajada',
-            'asado',
-            'sandwish',
-            'adicional',
-            'bebida'
+            'pizza',
+            'ensalada',
+            'taco',
           ];
 
           return ListView(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(16),
             children: categories.map((category) {
               final items = state.products
                   .where((p) => p.name.toLowerCase().contains(category))
@@ -74,34 +72,93 @@ void initState() {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    category.toUpperCase(),
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                          color: const Color(0xFFFF936B),
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                  const SizedBox(height: 8),
-                  ...items.map((product) => Card(
-                        color: Colors.amber[100],
-                        child: ListTile(
-                          title: Text(product.name),
-                          subtitle: Text(
-                            '\$${product.price}',
-                            style: const TextStyle(fontWeight: FontWeight.bold),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Text(
+                      category.toUpperCase(),
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontWeight: FontWeight.bold,
                           ),
+                    ),
+                  ),
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 12,
+                      crossAxisSpacing: 12,
+                      childAspectRatio: 0.8,
+                    ),
+                    itemCount: items.length,
+                    itemBuilder: (context, index) {
+                      final product = items[index];
+                      return Card(
+                        elevation: 4,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(16),
                           onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    ProductDetailPage(product: product),
+                                builder: (context) => ProductDetailPage(product: product),
                               ),
                             );
                           },
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Expanded(
+                                child: ClipRRect(
+                                  borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                                  child: Image.asset(
+                                    product.image,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      product.name,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      product.description,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(fontSize: 13, color: Colors.black54),
+                                    ),
+                                    const SizedBox(height: 6),
+                                    Text(
+                                      NumberFormat.currency(locale: 'es_CO', symbol: '\$', decimalDigits: 0).format(product.price),
+                                      style: TextStyle(
+                                        color: Theme.of(context).colorScheme.primary,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      )),
-                  const SizedBox(height: 16),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 24),
                 ],
               );
             }).toList(),
