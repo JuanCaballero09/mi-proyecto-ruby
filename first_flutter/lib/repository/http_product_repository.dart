@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -19,7 +18,11 @@ class HttpProductRepository implements ProductRepository {
       return jsonList.map((json) => Product(
         id: json['id'],
         name: json['name'],
-        price: (json['price']),
+        price: (json['price'] is int)
+            ? (json['price'] as int).toDouble()
+            : (json['price'] as num).toDouble(),
+        description: json['description'] ?? '',
+        image: json['image'] ?? '',
       )).toList();
     } else {
       throw Exception('Failed to load products');
