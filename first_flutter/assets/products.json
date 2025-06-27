@@ -1,0 +1,30 @@
+[
+  {
+    "id": "1",
+    "name": "Hamburguesa Clásica",
+    "description": "Jugosa carne de res, queso cheddar, lechuga, tomate y salsa especial.",
+    "price": 7.99,
+    "image": "assets/imagen1.jpeg"
+  },
+  {
+    "id": "2",
+    "name": "Pizza Margarita",
+    "description": "Masa artesanal, salsa de tomate, mozzarella y albahaca fresca.",
+    "price": 9.50,
+    "image": "assets/imagen2.jpeg"
+  },
+  {
+    "id": "3",
+    "name": "Ensalada César",
+    "description": "Lechuga romana, pollo a la parrilla, crutones y aderezo César.",
+    "price": 6.25,
+    "image": "assets/imagen3.jpeg"
+  },
+  {
+    "id": "4",
+    "name": "Tacos al Pastor",
+    "description": "Tortillas de maíz, cerdo adobado, piña y cebolla.",
+    "price": 5.75,
+    "image": "assets/imagen4.png"
+  }
+]

@@ -33,6 +33,7 @@ flutter:
   - assets/facebook.png
   - assets/instagram.png
   - assets/whatsapp.png
+  - assets/products.json
 
 
 flutter_launcher_icons:

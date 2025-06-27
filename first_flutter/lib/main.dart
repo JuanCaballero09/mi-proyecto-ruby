@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/product_bloc.dart';
 import 'repository/product_repository.dart';
 import 'repository/http_product_repository.dart';
+import 'repository/local_product_repository.dart';
 import 'pages/splash_page.dart';
 import 'package:first_flutter/pages/register_page.dart';
   
@@ -12,9 +13,10 @@ import 'package:first_flutter/pages/register_page.dart';
 
 
 void main() {
-  const String apiUrl =
-      'https://run.mocky.io/v3/a667541a-2e6f-4de8-9431-d62ce7ffa590';
-  final ProductRepository repository = HttpProductRepository(apiUrl: apiUrl);
+  // Para usar datos locales, descomenta la siguiente línea y comenta la de HttpProductRepository:
+  final ProductRepository repository = LocalProductRepository();
+  const String apiUrl = 'https://64e8e7e299cf45b15fdffb7e.mockapi.io/api/v1/products';
+  //final ProductRepository repository = HttpProductRepository(apiUrl: apiUrl);
 
   runApp(MyApp(repository: repository));
 }
@@ -60,6 +62,6 @@ class MyApp extends StatelessWidget {
    );
     }
   }
-    
 
-  
+
+
