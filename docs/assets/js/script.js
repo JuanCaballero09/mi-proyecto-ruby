@@ -6,6 +6,22 @@ function closeMenu() {
     document.getElementById('aside-1').classList.remove('show');
 }
 
+const elementos = document.querySelectorAll('.scroll-item');
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        } else {
+            entry.target.classList.remove('visible');
+        }
+    });
+}, {
+    threshold: 0.4
+});
+
+elementos.forEach(el => observer.observe(el));
+
 document.addEventListener('DOMContentLoaded', () => {
     const section = document.getElementById('section-1');
     const links = document.querySelectorAll('.nav-link');
