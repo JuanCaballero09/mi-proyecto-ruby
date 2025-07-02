@@ -1,61 +1,64 @@
 function toggleMenu() {
-    const aside = document.querySelectorAll('#aside-1')
-    aside.forEach(link => {
-        link.classList.add('show');
-    });
+    document.getElementById('aside-1').classList.add('show');
 }
 
-function closeMenu(){
-    const aside = document.querySelectorAll('#aside-1')
-    aside.forEach(link => {
-        link.classList.remove('show');
-    })
+function closeMenu() {
+    document.getElementById('aside-1').classList.remove('show');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     const section = document.getElementById('section-1');
     const links = document.querySelectorAll('.nav-link');
-    const aside = document.getElementById("aside-1")
+    const aside = document.getElementById('aside-1');
 
-    function loadView(viewName){
+    const isMobile = () => window.innerWidth <= 768; // o usa el mismo breakpoint que en tu CSS
+
+    function loadView(viewName) {
         fetch(`views/${viewName}.html`)
             .then(res => res.text())
-            .then(html => section.innerHTML = html)
+            .then(html => {
+                section.innerHTML = html;
+                section.scrollIntoView({ behavior: 'smooth' });
+            })
             .catch(err => {
-                section.innerHTML = '<p>Error al cargar la vista</p><br>';
+                section.innerHTML = '<p>Error al cargar la vista</p>';
                 console.error('Error al cargar la vista:', err);
             });
     }
 
     function syncActive(linkClicked) {
         const view = linkClicked.getAttribute('data-section');
-
-        links.forEach(l => {
-            if(l.getAttribute('data-section') == view) {
-                l.classList.add('active');
-            }else{
-                l.classList.remove('active');
+        links.forEach(link => {
+            if (link.getAttribute('data-section') === view) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
             }
         });
     }
-
 
     links.forEach(link => {
         link.addEventListener('click', e => {
             e.preventDefault();
 
             const view = link.getAttribute('data-section');
-            loadView(view);
+            const target = document.getElementById(view === 'integrantes' ? 'cont-inte' : view);
+
             syncActive(link);
 
-            aside.classList.remove('show');
+            if (isMobile()) {
+                loadView(view);
+                aside.classList.remove('show');
+            } else {
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
         });
     });
 
-    loadView('home');
-    links.forEach(link => {
-        if (link.getAttribute('data-section') === 'home') {
-            link.classList.add('active');
-        }
-    })
+    // Al cargar, si está en móvil, carga "home" por defecto
+    if (isMobile()) {
+        loadView('home');
+    }
 });
