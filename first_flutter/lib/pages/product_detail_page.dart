@@ -1,6 +1,8 @@
+import 'package:first_flutter/pages/carrito_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/product.dart';
+import 'cart_page.dart';
 
 class ProductDetailPage extends StatelessWidget {
   final Product product;
