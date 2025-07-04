@@ -9,6 +9,11 @@
   </div>
 
   <div class="card stat">
+    <h3>Productos Disponibles</h3>
+    <p><%= Product.where(disponible: true).count %></p>
+  </div>
+
+  <div class="card stat">
     <h3>Total grupos</h3>
     <p><%= Grupo.count %></p>
   </div>
@@ -30,7 +35,7 @@
   </div>
 
   <!-- Gráfico tipo pie -->
-  <div class="card chart normal">
+  <div class="card chart">
     <h3>Distribución</h3>
     <canvas id="chartTorta"></canvas>
   </div>
@@ -40,5 +45,5 @@
     <h3>Crecimiento</h3>
     <canvas id="chartLineas"></canvas>
   </div>
-  
+
 </div>
