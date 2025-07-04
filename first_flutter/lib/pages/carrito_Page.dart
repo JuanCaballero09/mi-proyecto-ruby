@@ -17,11 +17,20 @@ Widget build(BuildContext context) {
       title: Center(
         child: Image.asset(
           'assets/imagen5.png',
-              width: 170,
-              
+              width: 170,  
         ),
       ),
     ),
+
+    body: ListView(
+      children: [
+        
+      ],
+      
+
+
+    )
+
 
   );
 }
