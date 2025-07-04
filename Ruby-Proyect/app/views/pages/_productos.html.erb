@@ -35,7 +35,7 @@
           <h3>Ingredientes</h3>
           <ul>
             <% @producto.ingredientes.each do |ingrediente| %>
-              <li><%= ingrediente %></li>
+              <li><%= ingrediente.nombre %></li>
             <% end %>
           </ul>
         </div>
