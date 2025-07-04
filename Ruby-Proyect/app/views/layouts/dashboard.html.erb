@@ -25,9 +25,7 @@
         <summary>Productos</summary>
 
           <%= link_to "Ver productos", dashboard_products_path %>
-
           <%= link_to "Crear producto", new_dashboard_product_path %>
-
 
       </details>
 
@@ -35,12 +33,20 @@
         <summary>Grupos</summary>
         
           <%= link_to "Ver grupos", dashboard_grupos_path %>
-
           <%= link_to "Crear grupo", new_dashboard_grupo_path %>
 
       </details>
 
-      <%= link_to "Volver al inicio", root_path %>
+      <details>
+        <summary>Ingredientes</summary>
+        
+          <%= link_to "Ver ingredientes", dashboard_ingredientes_path %>
+          <%= link_to "Crear ingrediente", new_dashboard_ingrediente_path %>
+
+      </details>
+
+      <%= link_to "Volver al inicio", root_path, class: "sidebar-footer"%>
+      
     </aside>
 
 

@@ -1,12 +1,10 @@
 class Product < ApplicationRecord
   belongs_to :grupo
 
-  validates :nombre, :descripcion, :precio, presence: true
+  has_many :ingrediente_productos
+  has_many :ingredientes, through: :ingrediente_productos
 
-  INGREDIENTES_DISPONIBLES = [
-    "Carne", "Pollo", "Queso", "Pan", "Lechuga", "Tomate",
-    "Papas", "Tocineta", "Maíz", "Huevo", "Cebolla caramelizada"
-  ]
+  validates :nombre, :descripcion, :precio, presence: true
 
   before_create :asignar_id_menor
 

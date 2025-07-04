@@ -1,0 +1,13 @@
+<h1><%= @ingrediente.new_record? ? "Nuevo" : "Editar" %> Ingrediente</h1>
+
+<%= form_with model: [:dashboard, @ingrediente], local: true, html: { class: "dashboard-form" } do |f| %>
+  <div>
+    <%= f.label :nombre %>
+    <%= f.text_field :nombre %>
+  </div>
+
+  <div>
+    <%= f.submit "Actualizar Ingrediente" %>
+    <%= link_to 'Volver', dashboard_ingredientes_path %>
+  </div>
+<% end %>

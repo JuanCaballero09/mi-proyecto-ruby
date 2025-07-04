@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   namespace :dashboard do
     root to: "dashboard#index"
     resources :grupos, path: "grupos"
+    resources :ingredientes
     resources :products, path: "productos" do
       member do
         patch :toggle_disponibilidad

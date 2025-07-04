@@ -10,10 +10,12 @@ class Dashboard::ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @ingredientes = Ingrediente.all
   end
 
   def edit
     @product = Product.find(params[:id])
+    @ingredientes = Ingrediente.all
   end
 
   def destroy
@@ -51,6 +53,9 @@ class Dashboard::ProductsController < ApplicationController
     end
   end
 
+  def product_params
+    params.require(:product).permit(:nombre, :precio, :descripcion, :grupo_id, :imagen, :disponible, ingrediente_ids: [])
+  end
 
   private
 
@@ -67,7 +72,7 @@ class Dashboard::ProductsController < ApplicationController
       :grupo_id,
       :disponible,
       :calificacion,
-      ingredientes: [] # ← este permite el array de ingredientes
+      ingrediente_ids: []
     )
   end
 
