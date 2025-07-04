@@ -1,13 +1,16 @@
 <!-- app/views/dashboard/products/index.html.erb -->
 <h2>Lista de Productos</h2>
 
+<%= link_to "Nuevo Producto", new_dashboard_product_path, class: "btn-aggr" %>
+<br>
+
 <div class="productss">
   <% @products.each do |product| %>
     <div class="product-card">
       <h3><%= product.nombre %></h3>
       <%= image_tag(product.imagen.attached? ? product.imagen : "LogoLogoText2.svg") %>
       <p>id: <%= product.id %></p>
-      <p><strong>Ingredientes:</strong> <%= product.ingredientes.join(", ") %></p>
+      <p><strong>Ingredientes:</strong> <%= product.ingredientes.map(&:nombre).join(", ")%></p>
       <p>Descripción: <%= product.descripcion %></p>
       <p>Precio: <%= number_to_currency(product.precio, unit: "COP ", separator: ",", delimiter: ".", precision: 0) %> $</p>
 

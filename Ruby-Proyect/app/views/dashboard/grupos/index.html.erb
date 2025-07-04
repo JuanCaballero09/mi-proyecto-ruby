@@ -1,5 +1,8 @@
 <h1>Grupos</h1>
 
+<%= link_to "Nuevo Grupo", new_dashboard_grupo_path, class: "btn-aggr" %>
+<br>
+
 <% @grupos.each do |grupo| %>
   <div class="dashboard-grupo">
     <div class="grupo-info">

@@ -1,7 +1,7 @@
 Grupo.destroy_all
 User.destroy_all
 Product.destroy_all
-
+Ingrediente.destroy_all
 
 ActiveRecord::Base.connection.reset_pk_sequence!('grupos')
 
@@ -63,3 +63,40 @@ Product.create(nombre: "Producto 6 (Grupo 3)", precio: 99999, descripcion: "Desc
 Product.create(nombre: "Producto 7 (Grupo 3)", precio: 99999, descripcion: "Descripción producto 7", disponible: true, grupo_id: grupo3.id)
 
 puts "Productos creados: #{Product.count}"
+
+
+puts "Creando Ingredientes..."
+
+ingredientes = [
+  "Carne de res",
+  "Pollo desmechado",
+  "Salchicha",
+  "Chorizo",
+  "Tocineta",
+  "Queso mozzarella",
+  "Queso cheddar",
+  "Huevo",
+  "Jamón",
+  "Lechuga",
+  "Tomate",
+  "Cebolla",
+  "Cebolla caramelizada",
+  "Maíz tierno",
+  "Pepinillos",
+  "Papas a la francesa",
+  "Papas ripio",
+  "Salsas (rosada, tártara, BBQ)",
+  "Ajo triturado",
+  "Guacamole",
+  "Pan de hamburguesa",
+  "Pan de perro caliente",
+  "Arepa",
+  "Tortilla de harina",
+  "Tortilla de maíz"
+]
+
+ingredientes.each do |nombre|
+  Ingrediente.find_or_create_by(nombre: nombre)
+end
+
+puts "Ingredientes creados: #{Ingrediente.count}"

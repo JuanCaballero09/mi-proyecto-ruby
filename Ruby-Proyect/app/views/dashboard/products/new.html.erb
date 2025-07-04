@@ -14,14 +14,15 @@
   <div>
     <%= f.label :ingredientes, "Ingredientes" %><br>
     <div style="border: 1px solid #ccc; padding: 10px; height: 150px; overflow-y: auto; border-radius: 5px;" class="ingredientes-list">
-      <% Product::INGREDIENTES_DISPONIBLES.each do |ingrediente| %>
+      <% @ingredientes.each do |ingrediente| %>
         <label>
-          <%= check_box_tag "product[ingredientes][]", ingrediente, @product.ingredientes.include?(ingrediente) %>
-          <%= ingrediente %>
+          <%= check_box_tag "product[ingrediente_ids][]", ingrediente.id, @product.ingrediente_ids.include?(ingrediente.id) %>
+          <%= ingrediente.nombre %>
         </label>
       <% end %>
     </div>
   </div>
+
 
   <div>
     <%= f.label :descripcion %>

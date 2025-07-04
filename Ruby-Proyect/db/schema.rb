@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_18_022014) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_04_200248) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -48,6 +48,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_022014) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "ingrediente_productos", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "ingrediente_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ingrediente_id"], name: "index_ingrediente_productos_on_ingrediente_id"
+    t.index ["product_id"], name: "index_ingrediente_productos_on_product_id"
+  end
+
+  create_table "ingredientes", force: :cascade do |t|
+    t.string "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "nombre"
     t.float "precio"
@@ -56,7 +71,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_022014) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "grupo_id", null: false
-    t.text "ingredientes", default: [], array: true
     t.decimal "calificacion", precision: 2, scale: 1
     t.index ["grupo_id"], name: "index_products_on_grupo_id"
   end
@@ -86,5 +100,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_022014) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "ingrediente_productos", "ingredientes"
+  add_foreign_key "ingrediente_productos", "products"
   add_foreign_key "products", "grupos"
 end

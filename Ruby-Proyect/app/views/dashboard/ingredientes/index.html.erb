@@ -1,0 +1,18 @@
+<h1>Lista de Ingredientes</h1>
+
+<%= link_to "Nuevo Ingrediente", new_dashboard_ingrediente_path, class: "btn-aggr" %>
+<br>
+
+<% @ingredientes.each do |ingrediente| %>
+    <div class="dashboard-grupo">
+        <div class="grupo-info">
+            <strong><%= ingrediente.nombre %></strong>
+            <p>/</p>
+            <p>Id: <%= ingrediente.id %></p>
+        </div>
+        <div class="grupo-acciones">
+            <%= link_to "Editar", edit_dashboard_ingrediente_path(ingrediente), class: "btn-editar" %>
+            <%= button_to "Eliminar", dashboard_ingrediente_path(ingrediente), method: :delete, data: { confirm: "¿Estás seguro de que quieres eliminar este Ingrediente?" }, class: "btn-eliminar" %>
+        </div>
+    </div>
+<%end%>
