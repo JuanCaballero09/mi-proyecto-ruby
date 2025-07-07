@@ -35,6 +35,18 @@ flutter:
   - assets/instagram.png
   - assets/whatsapp.png
   - assets/products.json
+  - assets/Hamburguesa sencilla.jpg
+  - assets/Hamburguesa BBQ.jpeg
+  - assets/Pizza margarita.jpg
+  - assets/Pizza pepperoni.jpg
+  - assets/Ensalada Cesar.jpg
+  - assets/Ensalada Mediterranea.jpg
+  - assets/Tacos al Pastor.jpg
+  - assets/Tacos de Pollo.jpg
+  - assets/Hamburgesa Doble Queso.jpeg
+  - assets/Pizza Hawiana.jpg
+  - assets/Ensalada de Atun.jpg
+  - assets/Tacos Veganos.jpg
 
 
 flutter_launcher_icons:
