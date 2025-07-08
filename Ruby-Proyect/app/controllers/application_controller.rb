@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   before_action :store_user_location!, if: :storable_location?
 
 
+  layout :layout_by_resource
+
   private
 
   def storable_location?
@@ -14,12 +16,20 @@ class ApplicationController < ActionController::Base
     store_location_for(:user, request.fullpath)
   end
 
+  def layout_by_resource
+    if devise_controller?
+      "devise" # usa layouts/devise.html.erb
+    else
+      "application"
+    end
+  end
+
 
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nombre, :apellido, :telefono, :email, :password, :password_confirmation])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:nombre, :apellido, :telefono, :password, :password_confirmation, :current_password])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [ :nombre, :apellido, :telefono, :email, :password, :password_confirmation ])
+    devise_parameter_sanitizer.permit(:account_update, keys: [ :nombre, :apellido, :telefono, :password, :password_confirmation, :current_password ])
   end
 
   def after_sign_in_path_for(resource)
@@ -29,5 +39,4 @@ class ApplicationController < ActionController::Base
   def after_sign_out_path_for(resource)
     root_path
   end
-
 end

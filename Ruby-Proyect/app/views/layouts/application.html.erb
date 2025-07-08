@@ -1,30 +1,113 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= content_for(:title) || "Bitevia" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title><%= content_for(:title) || "Bitevia" %></title>
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="mobile-web-app-capable" content="yes">
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
 
-    <%= yield :head %>
+      <%= yield :head %>
 
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+      <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+      <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
-    <link rel="icon" href="<%= asset_path('LogoLogo.svg') %>" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="<%= asset_path('LogoLogo.svg') %>" type="image/svg+xml">
+      <link rel="icon" href="<%= asset_path('LogoLogo.svg') %>" type="image/svg+xml">
+      <link rel="apple-touch-icon" href="<%= asset_path('LogoLogo.svg') %>" type="image/svg+xml">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag "bootstrap.min", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+      <%# Includes all stylesheet files in app/assets/stylesheets %>
+      <%= stylesheet_link_tag "bootstrap.min", "data-turbo-track": "reload" %>
+      <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+      <%= javascript_importmap_tags %>
+    </head>
 
-  <body>
+    <body>
 
-    <%= yield %>
-    
-  </body>
-</html>
+      <header class="header">
+        <div class="logo">
+            <%= image_tag "LogoLogo.svg" %>
+            <h1>Bitevia Software</h1>
+        </div>
+        <div class="buscador">
+            <input type="search" name="barra_busquedad">
+            <button type="submit">
+                <%= image_tag "icons/magnifying-glass-solid.svg" %>
+            </button>
+        </div>
+      </header>
+
+      <nav class="navbar">
+        <div class="links">
+          <%= link_to "Inicio", root_path %>
+          <%= link_to "Categorias", grupos_path %>
+          <%= link_to "Menú", "#", class: "disabled" %> <!-- Enlace temporal -->
+
+          <% if current_user %>
+            <% if current_user.admin? %>
+              <%= link_to "Panel de administración", "#", class: "disabled" %> <!-- Enlace temporal -->
+            <% end %>
+          <% end %>
+        </div>
+
+        <% if current_user %>
+          <div class="user">
+            <% total = session[:carrito]&.sum { |p| p["cantidad"] } || 0 %>
+            <span id="contador-carrito" class="disabled"><%= total %></span>
+            <%= link_to image_tag("icons/cart-shopping-solid.svg", alt: "Carrito"), "#", class: "disabled" %> <!-- temporal -->
+            <%= link_to image_tag("icons/user-solid.svg", alt: "Perfil"), "#", class: "disabled" %> <!-- temporal -->
+
+            <div class="btn-user">
+              <%= button_to "Cerrar sesión", destroy_user_session_path, method: :delete, 
+                data: { turbo_confirm: "¿Estás seguro que quieres cerrar sesión?" } %>
+
+            </div>
+          </div>
+        <% else %>
+          <div class="user">
+            <% total = session[:carrito]&.sum { |p| p["cantidad"] } || 0 %>
+            <span id="contador-carrito"><%= total %></span>
+
+            <%= link_to image_tag("icons/cart-shopping-solid.svg", alt: "Carrito", class: "carro"), "#" %>
+            <div class="btn-user">
+              <%= link_to "Iniciar Sesión", new_user_session_path%>
+            </div>
+          </div>
+        <% end %>
+      </nav>
+
+
+      <main class="vistas">
+        
+        <%= yield %>
+
+      </main>
+
+      <footer class="footer">
+
+        <div class="social">
+          <a href="#">  
+            <%= image_tag "icons/instagram-brands.svg" %>
+          </a>
+          <a href="#">
+            <%= image_tag "icons/whatsapp-brands.svg" %>
+          </a>
+          <a href="#">
+            <%= image_tag "icons/tiktok-brands.svg" %>
+          </a>
+        </div>
+
+        <div class="footer-name">
+          <span class="linea"></span>
+          <h2 class="nombre-footer">Bitevia</h2>
+          <span class="linea"></span>
+        </div>
+
+        <p>v2.1.4</p>
+        <p>© 2025 Bitevia Software. Todos los derechos reservados.</p>
+
+      </footer>
+
+      
+    </body>
+  </html>

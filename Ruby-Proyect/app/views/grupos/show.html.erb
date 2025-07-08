@@ -1,0 +1,15 @@
+<section class="grupo-show">
+  <%= @grupo.nombre %>
+  <%= @grupo.descripcion %>
+  <% if @grupo.imagen.attached? %>
+    <%= image_tag @grupo.image, alt: @grupo.nombre, class: "grupo-imagen", width: 200 %>
+  <% else %>
+    <%= image_tag 'LogoLogo.svg', alt: @grupo.nombre, class: "grupo-imagen", width: 200 %>
+  <%end%>
+
+  <% @grupo.products.each do |product| %>
+    
+  <%end %>
+  <%= link_to "Back to grupos", grupos_path %>
+
+</section>

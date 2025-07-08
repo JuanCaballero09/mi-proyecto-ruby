@@ -5,6 +5,8 @@ class Grupo < ApplicationRecord
 
   before_create :asignar_id_menor
 
+  has_one_attached :imagen
+
   private
 
   def asignar_id_menor

@@ -1,0 +1,22 @@
+
+<br>
+<section class="grupos">
+  <% @grupos.each do |grupo| %>
+    <% productos_disponibles = grupo.products.select(&:disponible) %>
+    <% if productos_disponibles.any? %>
+      <%= link_to grupo_path(grupo), class: "grupo-carta" do %>
+        <% if grupo.imagen.attached? %>
+          <%= image_tag grupo.imagen, alt: grupo.nombre, class: "grupo-imagen", width: 200 %>
+        <% else %>
+          <%= image_tag 'LogoLogo.svg', alt: grupo.nombre, class: "grupo-imagen", width: 200 %>
+        <% end %>
+
+        <h3><%= grupo.nombre %></h3>
+
+        <% if grupo.descripcion.present? %>
+          <p><%= truncate(grupo.descripcion, length: 80) %></p>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</section>
