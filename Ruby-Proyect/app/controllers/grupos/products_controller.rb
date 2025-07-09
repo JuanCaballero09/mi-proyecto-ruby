@@ -9,6 +9,7 @@ class Grupos::ProductsController < ApplicationController
 
   # GET /grupos/:grupo_id/products/:id
   def show
+    @product = @grupo.products.find(params[:id])
   end
 
   private

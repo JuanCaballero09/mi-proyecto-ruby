@@ -1,10 +1,62 @@
-<p style="color: green"><%= notice %></p>
+<section class="producto">
+  <aside class="producto-aside">
+    <% if @product.imagen.attached? %>
+      <%= image_tag(@product.imagen, alt: @product.nombre ) %>
+    <% else %>
+      <%= image_tag('LogoLogoText2.svg', alt: 'Producto sin imagen') %>
+    <% end %>
 
-<%= render @grupos_product %>
+    <div>
+      <h2>Calificación</h2>
+      <p>&starf;&starf;&starf;&starf;&star; </p>
+    </div>
 
-<div>
-  <%= link_to "Edit this product", edit_grupos_product_path(@grupos_product) %> |
-  <%= link_to "Back to products", grupos_products_path %>
+    <div class = "botones-compra">
+      <%# <%= form_with url: agregar_al_carrito_path, method: :post do %>
+        <%# <%= hidden_field_tag :producto_id, @product.id %>
+        <%# <%= submit_tag "Agregar al Carrito", class: "boton-compra"%>
+      <%# <% end %>
+      <%# <%= link_to "Comprar ahora", formulario_path(@product.id), class: 'boton-compra' %>
+    </div>
 
-  <%= button_to "Destroy this product", @grupos_product, method: :delete %>
-</div>
+  </aside>
+  <article class="producto-vista">
+    <div class="producto-detalles">
+      <div class="producto-info">
+        <h1><%= @product.nombre %></h1>
+        <p><%= @product.descripcion %></p>
+
+        <div>
+          <h3>Precio</h3>
+          <p>$<%= @product.precio %></p>
+        </div>
+
+        <div>
+          <h3>Ingredientes</h3>
+          <ul>
+            <% @product.ingredientes.each do |ingrediente| %>
+              <li><%= ingrediente.nombre %></li>
+            <% end %>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Categoría</h3>
+          <p><%= @product.grupo.nombre %></p>
+        </div>
+      </div>
+
+      <div class="producto-comentarios">
+        <h3>Opiniones</h3>
+        <ul>
+          <li>“Muy rica y jugosa” – Ana</li>
+          <li>“Me encantó la combinación” – Luis</li>
+        </ul>
+      </div>
+
+
+    </div>
+
+  </article>
+
+</section>

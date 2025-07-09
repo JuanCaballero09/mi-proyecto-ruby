@@ -1,16 +1,35 @@
-<p style="color: green"><%= notice %></p>
+<% productos_disponibles = @grupo.products.where(disponible: true).order(id: :asc) %>
 
-<% content_for :title, "Products" %>
-
-<h1>Products</h1>
-
-<div id="grupos_products">
-  <% @grupos_products.each do |grupos_product| %>
-    <%= render grupos_product %>
-    <p>
-      <%= link_to "Show this product", grupo_product %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New product", new_grupos_product_path %>
+<% if productos_disponibles.any? %>
+  <div class="grupo">
+    <div class="producto-btn grupo-show-links">
+      <h2><%= @grupo.nombre %></h2>
+      <%= link_to "Mostrar Categorias", grupos_path %>
+    </div>
+    <div class="grupos">
+      <% productos_disponibles.each do |producto| %>
+        <div class="grupo-carta grupo-producto">
+          <%= link_to grupo_product_path(@grupo, producto), class: "link-carta" do %>
+            <div class="grupo-imagen">
+              <%= image_tag(producto.imagen.attached? ? producto.imagen : "LogoLogoText2.svg") %>
+            </div>
+            <h4><%= producto.nombre %></h4> 
+            <p><strong><%= number_to_currency(producto.precio, unit: "COP ", separator: ",", delimiter: ".", precision: 0) %> $</strong></p>
+          <% end %>
+          <div class="botones-compra">
+            <%# <%= form_with url: agregar_al_carrito_path, method: :post, html: { class: "form-agregar-carrito", data: { turbo: false } } do %>
+              <%# <%= hidden_field_tag :producto_id, producto.id %>
+              <%# <%= submit_tag "Agregar al Carrito", class: "boton-compra"%>
+            <%# <% end %>
+            <%# <%= link_to "Comprar ahora", formulario_path(producto.id), class: 'boton-compra' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <div class="sin-productos">
+    <%= image_tag "ProductoNoDisponible.png", alt: "Producto No Disponible" %>
+    <h2>No hay productos disponibles por ahora.</h2>
+  </div>
+<% end %>
