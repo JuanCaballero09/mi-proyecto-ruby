@@ -1,3 +1,8 @@
+<% resource_name ||= :user %>
+<% resource     ||= User.new %>
+<% devise_mapping ||= Devise.mappings[:user] %>
+
+
 <section class="login-background">
   <div class="left-side">
     <div class="session-header">

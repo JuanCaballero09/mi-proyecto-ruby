@@ -1,0 +1,20 @@
+<section class="grupos">
+  <% @grupos.each do |grupo| %>
+    <% productos_disponibles = grupo.products.select(&:disponible) %>
+    <% if productos_disponibles.any? %>
+      <%= link_to grupo_path(grupo), class: "grupo-carta" do %>
+        <div class="grupo-imagen">
+          <% if grupo.imagen.attached? %>
+            <%= image_tag url_for(grupo.imagen), alt: grupo.nombre %>
+          <% else %>
+            <%= image_tag 'LogoLogo.svg', alt: grupo.nombre %>
+          <% end %>
+        </div>
+        <div class="grupo-info">
+          <h3><%= grupo.nombre %></h3>
+          <p><%= grupo.descripcion.present? ? truncate(grupo.descripcion, length: 80) : "No hay descripción disponible" %></p>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</section>

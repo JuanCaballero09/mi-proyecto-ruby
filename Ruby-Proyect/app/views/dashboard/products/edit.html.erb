@@ -33,6 +33,17 @@
   <div>
     <%= form.label :imagen %>
     <%= form.file_field :imagen, value: @product.imagen, accept: 'image/*', id: 'imagen-input' %>
+    <% if @product.imagen.attached? %>
+      <div class="current-image">
+        <p>Imagen actual:</p>
+        <%= image_tag @product.imagen, alt: @product.nombre, class: "product-imagen" %>
+      </div>
+    <% else %>
+      <div class="current-image">
+        <p>Imagen actual:</p>
+        <strong>No hay imagen actualmente.</strong>
+      </div>
+    <% end %>
   </div>
 
   <div>

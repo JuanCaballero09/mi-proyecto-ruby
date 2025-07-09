@@ -1,0 +1,21 @@
+<section class="grupo-show">
+  <% if @grupo.imagen.attached? %>
+    <%= image_tag @grupo.imagen, alt: @grupo.nombre, class: "grupo-imagen", width: 200 %>
+  <% else %>
+    <%= image_tag 'LogoLogo.svg', alt: @grupo.nombre, class: "grupo-imagen", width: 200 %>
+  <%end%>
+
+  <div class="grupo-show-def">
+    <div class="grupo-show-info">
+      <strong>Grupo:</strong> 
+      <p><%= @grupo.nombre %></p>
+      <p><strong>Descripción:</strong> <%= @grupo.descripcion %></p>
+    </div>
+
+    <div class="grupo-show-links">
+      <%= link_to "Mostrar Productos", grupo_products_path(@grupo)%>
+      <%= link_to "Mostrar Categorias", grupos_path %>
+    </div>
+  </div>
+
+</section>

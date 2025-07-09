@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :grupo
 
-  has_many :ingrediente_productos
+  has_many :ingrediente_productos, dependent: :destroy
   has_many :ingredientes, through: :ingrediente_productos
 
   validates :nombre, :descripcion, :precio, presence: true

@@ -4,13 +4,13 @@
 <br>
 
 <% @ingredientes.each do |ingrediente| %>
-    <div class="dashboard-grupo">
-        <div class="grupo-info">
+    <div class="dashboard-ingrediente">
+        <div class="grupo-info-dashboard">
             <strong><%= ingrediente.nombre %></strong>
             <p>/</p>
             <p>Id: <%= ingrediente.id %></p>
         </div>
-        <div class="grupo-acciones">
+        <div class="dashboard-acciones">
             <%= link_to "Editar", edit_dashboard_ingrediente_path(ingrediente), class: "btn-editar" %>
             <%= button_to "Eliminar", dashboard_ingrediente_path(ingrediente), method: :delete, data: { confirm: "¿Estás seguro de que quieres eliminar este Ingrediente?" }, class: "btn-eliminar" %>
         </div>

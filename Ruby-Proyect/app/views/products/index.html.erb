@@ -1,0 +1,39 @@
+<% productos_por_grupo = @products.group_by(&:grupo) %>
+
+<% if @products.any? %>
+  <% productos_por_grupo.each do |grupo, productos| %>
+    <div class="grupo">
+      <h2><%= grupo.nombre %></h2>
+
+      <div class="slider-wrapper">
+        <button class="botonL" onclick="moverSlider('slider-<%= grupo.id %>', -1)">←</button>
+
+        <div class="slider-container" id="slider-<%= grupo.id %>">
+          <% productos.each do |producto| %>
+            <div class="carta">
+              <%= link_to grupo_product_path(producto.grupo, producto), class: "link-carta" do %>
+                <%= image_tag(producto.imagen.attached? ? producto.imagen : "LogoLogoText2.svg") %>
+                <h4><%= producto.nombre %></h4>
+                <p><strong><%= number_to_currency(producto.precio, unit: "COP ", separator: ",", delimiter: ".", precision: 0) %> $</strong></p>
+              <% end %>
+              <div class="botones-compra">
+                <%# <%= form_with url: agregar_al_carrito_path, method: :post, html: { class: "form-agregar-carrito", data: { turbo: false } } do %>
+                  <%# <%= hidden_field_tag :producto_id, producto.id %>
+                  <%# <%= submit_tag "Agregar al Carrito", class: "boton-compra"%>
+                <%# <% end %>
+                <%# <%= link_to "Comprar ahora", formulario_path(producto.id), class: 'boton-compra' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <button class="botonR" onclick="moverSlider('slider-<%= grupo.id %>', 1)">→</button>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <div class="sin-productos">
+    <%= image_tag "ProductoNoDisponible.png", alt: "Producto No Disponible" %>
+    <h2>No hay productos disponibles por ahora.</h2>
+  </div>
+<% end %>

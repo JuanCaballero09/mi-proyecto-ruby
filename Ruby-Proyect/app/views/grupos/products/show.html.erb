@@ -1,7 +1,7 @@
 <section class="producto">
   <aside class="producto-aside">
-    <% if @producto.imagen.attached? %>
-      <%= image_tag(@producto.imagen, alt: @producto.nombre ) %>
+    <% if @product.imagen.attached? %>
+      <%= image_tag(@product.imagen, alt: @product.nombre ) %>
     <% else %>
       <%= image_tag('LogoLogoText2.svg', alt: 'Producto sin imagen') %>
     <% end %>
@@ -12,29 +12,29 @@
     </div>
 
     <div class = "botones-compra">
-      <%= form_with url: agregar_al_carrito_path, method: :post do %>
-        <%= hidden_field_tag :producto_id, @producto.id %>
-        <%= submit_tag "Agregar al Carrito", class: "boton-compra"%>
-      <% end %>
-      <%= link_to "Comprar ahora", formulario_path(@producto.id), class: 'boton-compra' %>
+      <%# <%= form_with url: agregar_al_carrito_path, method: :post do %>
+        <%# <%= hidden_field_tag :producto_id, @product.id %>
+        <%# <%= submit_tag "Agregar al Carrito", class: "boton-compra"%>
+      <%# <% end %>
+      <%# <%= link_to "Comprar ahora", formulario_path(@product.id), class: 'boton-compra' %>
     </div>
 
   </aside>
   <article class="producto-vista">
     <div class="producto-detalles">
       <div class="producto-info">
-        <h1><%= @producto.nombre %></h1>
-        <p><%= @producto.descripcion %></p>
+        <h1><%= @product.nombre %></h1>
+        <p><%= @product.descripcion %></p>
 
         <div>
           <h3>Precio</h3>
-          <p>$<%= @producto.precio %></p>
+          <p>$<%= @product.precio %></p>
         </div>
 
         <div>
           <h3>Ingredientes</h3>
           <ul>
-            <% @producto.ingredientes.each do |ingrediente| %>
+            <% @product.ingredientes.each do |ingrediente| %>
               <li><%= ingrediente.nombre %></li>
             <% end %>
           </ul>
@@ -42,7 +42,7 @@
 
         <div>
           <h3>Categoría</h3>
-          <p><%= @producto.grupo.nombre %></p>
+          <p><%= @product.grupo.nombre %></p>
         </div>
       </div>
 
