@@ -5,12 +5,19 @@
 
 <% @grupos.each do |grupo| %>
   <div class="dashboard-grupo">
-    <div class="grupo-info">
-      <strong><%= grupo.nombre %></strong>
-      <p>/</p>
-      <p>Id: <%= grupo.id %></p>
+    <div class="grupo-imagen">
+      <% if grupo.imagen.attached? %>
+        <%= image_tag url_for(grupo.imagen), alt: grupo.nombre %>
+      <% else %>
+        <%= image_tag 'LogoLogo.svg', alt: grupo.nombre %>
+      <% end %>
     </div>
-    <div class="grupo-acciones">
+
+    <div class="grupo-info-dashboard">
+      <p><strong><%= grupo.nombre %></strong> / Id: <%= grupo.id %></p>
+      <p><%= grupo.descripcion%></p>
+    </div>
+    <div class="dashboard-acciones">
       <%= link_to "Editar", edit_dashboard_grupo_path(grupo), class: "btn-editar" %>
       <%= button_to "Eliminar", dashboard_grupo_path(grupo), method: :delete, data: { confirm: "¿Estás seguro de que quieres eliminar este Grupo?" }, class: "btn-eliminar" %>
     </div>

@@ -3,8 +3,20 @@
 <%= form_with model: [:dashboard, @grupo], local: true, html: { class: "dashboard-form" } do |f| %>
   <div>
     <%= f.label :nombre %>
-    <%= f.text_field :nombre %>
+    <%= f.text_field :nombre, required: true%>
   </div>
+
+    <div>
+    <%= f.label :descripcion %>
+    <%= f.text_area :descripcion, required: true%>
+  </div>
+
+
+  <div>
+    <%= f.label :imagen %>
+    <%= f.file_field :imagen, accept: 'image/*' %>
+  </div>
+
   <div>
     <%= f.submit "Crear grupo" %>
   </div>

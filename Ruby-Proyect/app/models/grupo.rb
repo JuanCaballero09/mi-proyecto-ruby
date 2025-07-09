@@ -1,7 +1,7 @@
 class Grupo < ApplicationRecord
   has_many :products, dependent: :destroy
 
-  validates :nombre, presence: true
+  validates :nombre, :descripcion, presence: true
 
   before_create :asignar_id_menor
 

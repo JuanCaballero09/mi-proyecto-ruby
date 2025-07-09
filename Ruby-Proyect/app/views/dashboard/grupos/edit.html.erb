@@ -6,6 +6,25 @@
     <%= form.text_field :nombre, value: @grupo.nombre %>
   </div>
 
+  <div>
+    <%= form.label :descripcion %>
+    <%= form.text_area :descripcion, value: @grupo.descripcion %>
+  </div>
+
+
+  <div>
+    <%= form.label :imagen %>
+    <%= form.file_field :imagen, accept: 'image/*' %>
+    <% if @grupo.imagen.attached? %>
+      <div class="current-image">
+        <p>Imagen actual:</p>
+        <%= image_tag @grupo.imagen, alt: @grupo.nombre, class: "grupo-imagen", width: 200 %>
+      </div>
+    <% else %>
+      <p>No hay imagen actual.</p>
+    <% end %>
+  </div>
+
   <%= form.submit "Actualizar Grupo" %>
   
   <%= link_to 'Volver', dashboard_grupos_path %>
