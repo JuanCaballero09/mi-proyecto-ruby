@@ -422,7 +422,7 @@ input:focus{outline: none;}
     text-align: center;
     object-fit: cover;
     min-width: 100vh;
-    height: 350px;
+    height: 450px;
     margin: 10px 20px;
     border-radius: 10px;
 }

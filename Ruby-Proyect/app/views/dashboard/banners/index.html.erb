@@ -1,7 +1,7 @@
 <h1>Agregar Imagen nueva</h1>
 
-<%= form_with model: @banner, url: dashboard_banners_path, local: true, multipart: true do |f| %>
-    <%= f.title_field :image %>
+<%= form_with model: Banners, url: dashboard_banners_path, local: true, multipart: true do |f| %>
+    <%= f.file_field :image %>
     <%= f.submit "Subir" %>
 
 <% end %>
@@ -11,6 +11,6 @@
 <% @banner.each do |banner|%>
     <div>
         <%= image_tag banner.image%>
-        <%= button_to 'Eliminar' dashboard_banners_path(banner), method: :delete, data: {confirm: '¿Seguro de eliminar la imagen?'} %>
+        <%= button_to 'Eliminar', dashboard_banners_path(banner), method: :delete, data: {confirm: '¿Seguro de eliminar la imagen?'} %>
     </div>
 <% end %>    

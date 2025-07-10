@@ -3,12 +3,8 @@ class Dashboard::BannersController < ApplicationController
   end
 
   def create
-    @banner = Banner.new(banner_params)
-    if @banner.save 
-      redirect_to_dashboard_banners_path, notice: 'Imagen agregada con exito.'
-    else
-      redirect_to_dashboard_banners_path, alert: 'Error al agregar la imagen.'
-    end
+    @banner = Banner.new
+    @banner.save 
   end
 
   def destroy
