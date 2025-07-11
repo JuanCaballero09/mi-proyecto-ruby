@@ -20,6 +20,13 @@
     <aside class="sidebar">
       <h2>Panel</h2>
       <%= link_to "Dashboard", dashboard_root_path %>
+      
+      <details>
+        <summary>Banner</summary>
+          <%= link_to "Ver Banners", dashboard_banners_path%>
+          <%= link_to "Crear Banner", new_dashboard_banner_path%>
+      </details>
+
 
       <details>
         <summary>Productos</summary>
@@ -45,11 +52,7 @@
 
       </details>
 
-       <details>
-        <summary>Banner</summary>
-          <%= link_to "Modificar Banner", dashboard_banners_path%>
-      </details>
-
+      
       <%= link_to "Volver al inicio", root_path, class: "sidebar-footer"%>
       
     </aside>

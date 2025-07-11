@@ -2,10 +2,10 @@
 
   <section class="custom-carousel">
     <div class="carousel-track" id="carouselTrack">
-      <% Banner.all.each do |banner| %>
-        <% if banner.image.attached? %>
+      <% Banner.order(:id).each do |banner| %>
+        <% if banner.imagen.attached? %>
           <div class="carousel-slide">
-            <%= image_tag banner.image, class: "carousel-image", alt: "Banner" %>
+            <%= image_tag banner.imagen, class: "carousel-image", alt: "Banner" %>
           </div>
         <% end %>
       <% end %>
