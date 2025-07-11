@@ -1,16 +1,24 @@
-<h1>Agregar Imagen nueva</h1>
+<h2 class="title-banner">Banner vista principal</h2>
 
-<%= form_with model: Banners, url: dashboard_banners_path, local: true, multipart: true do |f| %>
-    <%= f.file_field :image %>
-    <%= f.submit "Subir" %>
-
+<%= form_with model: @banner, url: dashboard_banners_path, local: true, multipart: true do |f| %>
+    <div class ="selecion-image">
+        <%= f.label :image, "Seleccionar imagen" %><br>
+        <%= f.file_field :image %>
+        <%= f.submit "Subir imagen", class: "btn-aggr" %>
+    </div>
 <% end %>
 
+<h3 class = "title-banner">Imágenes Montadas</h3>
 
-<h3>Imagenes subidas</h3>
-<% @banner.each do |banner|%>
-    <div>
-        <%= image_tag banner.image%>
-        <%= button_to 'Eliminar', dashboard_banners_path(banner), method: :delete, data: {confirm: '¿Seguro de eliminar la imagen?'} %>
-    </div>
-<% end %>    
+<section class= "dash-banner">
+    <% @banners.each do |banner| %>
+        <% if banner.image.attached? %>
+                <div class ="tarjeta-banner">
+                    <%= image_tag banner.image, width: 200 %>
+                    <%= button_to 'Eliminar', dashboard_banner_path(banner), method: :delete, class: "btn-eliminar" %>
+                </div>
+            <% else %>
+            <p>⚠️ Esta imagen no está adjunta</p>
+        <% end %>
+    <% end %>
+</section>
