@@ -95,3 +95,26 @@ function agregarAlCarrito(producto_id) {
     }
   });
 }
+
+// ==============================
+// 🎞️ Función para el banner
+// ==============================
+
+const track = document.getElementById('carouselTrack');
+const slide = document.querySelectorAll('.carousel-image');
+let index = 0;
+
+function movecarousel () {
+  index++;
+  if (index >= slide.length){
+    index = 0;
+  }
+
+  const offset = index * slide[0].clientWidth;
+  track.style.transform = `translateX(-${offset}px)`;  
+}
+setInterval(movecarousel, 10000);
+
+
+
+

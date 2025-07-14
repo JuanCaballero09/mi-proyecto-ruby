@@ -1579,12 +1579,11 @@ input:focus{outline: none;}
 .carousel-track {
   display: flex;
   width: 100%;
-  animation: slide 20s infinite;
 }
 
 .carousel-slide {
   min-width: 100%;
-  transition: transform 0.5s ease;
+  transition: transform 3.0s ease;
   height: 500px;
 }
 
@@ -1611,7 +1610,6 @@ input:focus{outline: none;}
 
   100% { transform: translateX(0%); }
 }
-
 
 
 /* dashboard banners */
@@ -1655,6 +1653,3 @@ input:focus{outline: none;}
   border-radius: 8px;
   margin-bottom: 1rem;
 }
-
-
-
