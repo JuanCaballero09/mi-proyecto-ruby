@@ -1,7 +1,18 @@
 <section class="home">
-  <%= image_tag 'LogoLogoText2.svg', alt: 'Anuncio', class: 'anuncio' %>
 
-  <h2> 🔥 Promociones de Día</h2>
+  <section class="custom-carousel">
+    <div class="carousel-track" id="carouselTrack">
+      <% Banner.order(:id).each do |banner| %>
+        <% if banner.imagen.attached? %>
+          <div class="carousel-slide">
+            <%= image_tag banner.imagen, class: "carousel-image", alt: "Banner" %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </section>
+
+  <h2> 🔥 Promociones del Día 🔥</h2>
   <div class="promociones">
     <% 2.times do %>
       <div class="promo">
