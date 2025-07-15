@@ -14,10 +14,14 @@
 
 </head>
 <body>
-  <div class="dashboard-container" style="display: flex;">
-    
-
+  <main class="dashboard-container" style="display: flex;">
+  
     <aside class="sidebar">
+
+      <div class="session-header" style="margin: 15px 0; ">
+        <%= image_tag "LogoLogo.svg", alt: "logo", style: "margin:0; height: 130px; width:130px;"%>
+      </div>
+
       <h2>Panel</h2>
       <%= link_to "Dashboard", dashboard_root_path %>
 
@@ -54,7 +58,7 @@
       <%= yield %>
     </main>
 
-  </div>
+  </main>
   <div id="animations"></div>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>

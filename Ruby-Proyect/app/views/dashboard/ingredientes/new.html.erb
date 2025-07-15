@@ -3,7 +3,7 @@
 <%= form_with model: [:dashboard, @ingrediente], local: true, html: { class: "dashboard-form" } do |f| %>
   <div>
     <%= f.label :nombre %>
-    <%= f.text_field :nombre %>
+    <%= f.text_field :nombre, required: true %>
   </div>
 
   <div>

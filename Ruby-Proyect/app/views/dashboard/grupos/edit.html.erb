@@ -3,12 +3,12 @@
 <%= form_with model: [:dashboard, @grupo], local: true, html: { class: "dashboard-form" } do |form| %>
   <div>
     <%= form.label :nombre %>
-    <%= form.text_field :nombre, value: @grupo.nombre %>
+    <%= form.text_field :nombre, value: @grupo.nombre, required: true %>
   </div>
 
   <div>
     <%= form.label :descripcion %>
-    <%= form.text_area :descripcion, value: @grupo.descripcion %>
+    <%= form.text_area :descripcion, value: @grupo.descripcion, required: true %>
   </div>
 
 

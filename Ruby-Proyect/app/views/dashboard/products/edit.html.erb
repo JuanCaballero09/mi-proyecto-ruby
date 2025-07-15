@@ -4,12 +4,12 @@
 <%= form_with model: [:dashboard, @product], local: true, html: { class: "dashboard-form" } do |form| %>
   <div>
     <%= form.label :nombre %>
-    <%= form.text_field :nombre, value: @product.nombre %>
+    <%= form.text_field :nombre, value: @product.nombre, required: true %>
   </div>
 
   <div>
     <%= form.label :precio %>
-    <%= form.number_field :precio, step: 0.01, value: @product.precio %>
+    <%= form.number_field :precio, step: 0.01, value: @product.precio, required: true  %>
   </div>
 
   <div>
@@ -27,7 +27,7 @@
 
   <div>
     <%= form.label :descripcion %>
-    <%= form.text_area :descripcion, value: @product.descripcion %>
+    <%= form.text_area :descripcion, value: @product.descripcion, required: true, required: true %>
   </div>
 
   <div>
@@ -48,7 +48,7 @@
 
   <div>
     <%= form.label :grupo_id, "Grupo" %>
-    <%= form.collection_select :grupo_id, Grupo.all, :id, :nombre, selected: @product.grupo_id %>
+    <%= form.collection_select :grupo_id, Grupo.all, :id, :nombre, selected: @product.grupo_id, required: true %>
   </div>
 
   <div class="checkbox-container">

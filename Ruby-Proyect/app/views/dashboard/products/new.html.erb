@@ -3,12 +3,12 @@
 <%= form_with model: [:dashboard, @product], local: true, html: { class: "dashboard-form" } do |f| %>
   <div>
     <%= f.label :nombre %>
-    <%= f.text_field :nombre %>
+    <%= f.text_field :nombre, required: true %>
   </div>
 
   <div>
     <%= f.label :precio %>
-    <%= f.number_field :precio, step: 0.01 %>
+    <%= f.number_field :precio, step: 0.01, required: true %>
   </div>
 
   <div>
@@ -26,12 +26,12 @@
 
   <div>
     <%= f.label :descripcion %>
-    <%= f.text_area :descripcion %>
+    <%= f.text_area :descripcion, required: true %>
   </div>
 
   <div>
     <%= f.label :grupo_id, "Grupo" %>
-    <%= f.collection_select :grupo_id, Grupo.all, :id, :nombre %>
+    <%= f.collection_select :grupo_id, Grupo.all, :id, :nombre, required: true %>
   </div>
 
   <div>
