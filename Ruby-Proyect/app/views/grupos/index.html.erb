@@ -1,4 +1,4 @@
-<section class="grupos">
+<section class="grupos" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
   <% @grupos.each do |grupo| %>
     <% productos_disponibles = grupo.products.select(&:disponible) %>
     <% if productos_disponibles.any? %>
