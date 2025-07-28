@@ -48,9 +48,23 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          automaticallyImplyLeading: false,
+       automaticallyImplyLeading: false,
+        centerTitle: true,
+        backgroundColor: const Color(0xFFFF936B),
+        title: Center(
+          child:(
+            Image.asset(
+              "assets/imagen5.png",
+              width: 170,
+            )
+          ),
+        ),
+        
         actions: [
+          
           IconButton(
+            padding: EdgeInsets.zero,
+  constraints: BoxConstraints(),
             icon: Icon(Icons.notifications),
             onPressed: () {
               Navigator.push(
