@@ -48,6 +48,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 40,
        automaticallyImplyLeading: false,
         centerTitle: true,
         backgroundColor: const Color(0xFFFF936B),
@@ -55,7 +56,7 @@ class _HomePageState extends State<HomePage> {
           child:(
             Image.asset(
               "assets/imagen5.png",
-              width: 170,
+              width: 150,
             )
           ),
         ),
@@ -65,7 +66,9 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             padding: EdgeInsets.zero,
   constraints: BoxConstraints(),
-            icon: Icon(Icons.notifications),
+            icon: Icon(Icons.notifications, 
+            size: 20,
+            color: Colors.white),
             onPressed: () {
               Navigator.push(
                 context,
@@ -73,7 +76,7 @@ class _HomePageState extends State<HomePage> {
               );
             },
           ),
-          IconButton(icon: Icon(Icons.location_on), onPressed: () {}),
+          IconButton(icon: Icon(Icons.location_on,           : Colors.white), onPressed: () {}),
         ],
       ),
 
