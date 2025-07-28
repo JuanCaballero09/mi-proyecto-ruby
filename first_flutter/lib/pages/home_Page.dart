@@ -44,6 +44,29 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: Icon(Icons.notifications),
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('¡notificacion Presionada!'),
+                  duration: Duration(seconds: 2)
+                ),
+              );
+              
+            },
+          ),
+            IconButton(
+              icon: Icon(Icons.location_on),
+              onPressed: (){
+
+              },
+            )
+        ],
+      ),
+ 
       body: PageView.builder(
         controller: _pageController,
         itemBuilder: (context, index) {
@@ -56,6 +79,8 @@ class _HomePageState extends State<HomePage> {
           });
         },
       ),
+
+
     );
   }
 }
