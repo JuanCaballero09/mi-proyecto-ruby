@@ -29,22 +29,22 @@ void initState() {
 
 
   @override
-  Widget build(BuildContext context) {
+Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        toolbarHeight: 40,
+       automaticallyImplyLeading: false,
         centerTitle: true,
         backgroundColor: const Color(0xFFFF936B),
         title: Center(
           child:(
             Image.asset(
               "assets/imagen5.png",
-              width: 170,
-
-
+              width: 150,
             )
           ),
-        ), 
+        ),
+       
 
 
 

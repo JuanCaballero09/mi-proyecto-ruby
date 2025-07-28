@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'notificacion_Page.dart';
+import 'location_Page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -49,26 +50,18 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 40,
-       automaticallyImplyLeading: false,
+        automaticallyImplyLeading: false,
         centerTitle: true,
         backgroundColor: const Color(0xFFFF936B),
-        title: Center(
-          child:(
-            Image.asset(
-              "assets/imagen5.png",
-              width: 150,
-            )
-          ),
-        ),
-        
+        title: Center(child: (Image.asset("assets/imagen5.png", width: 150))),
+
+        leading: SizedBox(width: 48),
+
         actions: [
-          
           IconButton(
             padding: EdgeInsets.zero,
-  constraints: BoxConstraints(),
-            icon: Icon(Icons.notifications, 
-            size: 20,
-            color: Colors.white),
+            constraints: BoxConstraints(),
+            icon: Icon(Icons.notifications, size: 20, color: Colors.white),
             onPressed: () {
               Navigator.push(
                 context,
@@ -76,7 +69,15 @@ class _HomePageState extends State<HomePage> {
               );
             },
           ),
-          IconButton(icon: Icon(Icons.location_on,           : Colors.white), onPressed: () {}),
+          IconButton(
+            icon: Icon(Icons.location_on, size: 20, color: Colors.white),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LocationPage()),
+              );
+            },
+          ),
         ],
       ),
 
