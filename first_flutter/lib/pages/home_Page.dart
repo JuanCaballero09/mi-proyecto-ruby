@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'notificacion_Page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -13,7 +14,9 @@ class _HomePageState extends State<HomePage> {
     "assets/imagen3.jpeg",
   ];
 
-  final PageController _pageController = PageController(initialPage: 1000); // Empieza en un número alto
+  final PageController _pageController = PageController(
+    initialPage: 1000,
+  ); // Empieza en un número alto
   int _currentIndex = 0;
   Timer? _timer;
 
@@ -45,32 +48,26 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          automaticallyImplyLeading: false,
         actions: [
           IconButton(
             icon: Icon(Icons.notifications),
             onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('¡notificacion Presionada!'),
-                  duration: Duration(seconds: 2)
-                ),
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NotificacionPage()),
               );
-              
             },
           ),
-            IconButton(
-              icon: Icon(Icons.location_on),
-              onPressed: (){
-
-              },
-            )
+          IconButton(icon: Icon(Icons.location_on), onPressed: () {}),
         ],
       ),
- 
+
       body: PageView.builder(
         controller: _pageController,
         itemBuilder: (context, index) {
-          final actualIndex = index % imaglist.length;  // Calcula índice real con módulo
+          final actualIndex =
+              index % imaglist.length; // Calcula índice real con módulo
           return Image.asset(imaglist[actualIndex], fit: BoxFit.cover);
         },
         onPageChanged: (index) {
@@ -79,8 +76,6 @@ class _HomePageState extends State<HomePage> {
           });
         },
       ),
-
-
     );
   }
 }
