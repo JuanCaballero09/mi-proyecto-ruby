@@ -3,6 +3,7 @@ import 'package:first_flutter/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/product_bloc.dart';
+import 'bloc/cart_bloc.dart';
 import 'repository/product_repository.dart';
 //import 'repository/http_product_repository.dart';
 import 'repository/local_product_repository.dart';
@@ -28,8 +29,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => ProductBloc(repository),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => ProductBloc(repository)),
+        BlocProvider(create: (_) => CartBloc()),
+      ],
       child: MaterialApp(
         title: 'Restaurante',
         debugShowCheckedModeBanner: false,
@@ -91,16 +95,16 @@ class MyApp extends StatelessWidget {
           ),
         ),
         initialRoute: '/',
-       routes: {
-         '/': (context) => SplashPage(),
-         '/welcome': (context) => const WelcomePage(),
-         '/login': (context) => const LoginPage(),
-         '/register': (context) => const RegisterPage(),
-         '/home': (context) => BlocProvider.value(
+        routes: {
+          '/': (context) => SplashPage(),
+          '/welcome': (context) => const WelcomePage(),
+          '/login': (context) => const LoginPage(),
+          '/register': (context) => const RegisterPage(),
+          '/home': (context) => BlocProvider.value(
         value: BlocProvider.of<ProductBloc>(context),
          child: WelcomePage(), // o HomePage()
       ),
-    }
+    },
    ),
    );
     }
