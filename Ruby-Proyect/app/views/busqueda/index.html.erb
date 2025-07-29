@@ -1,0 +1,56 @@
+<section style="padding: 20px; diplay:flex; flex-direction: column;">
+  <br>
+  <h2>Resultados para "<%= params[:q] %>"</h2>
+  <hr>
+
+  <% if @grupos.any? %>
+    <h3>Grupos encontrados</h3>
+    <section class="grupos" style="padding: 0;">
+      <% @grupos.each do |grupo| %>
+        <%= link_to grupo_path(grupo), class: "grupo-carta", style: "max-width: 350px;" do %>
+          <div class="grupo-imagen">
+            <% if grupo.imagen.attached? %>
+              <%= image_tag url_for(grupo.imagen), alt: grupo.nombre %>
+            <% else %>
+              <%= image_tag 'LogoLogo.svg', alt: grupo.nombre %>
+            <% end %>
+          </div>
+          <div class="grupo-info">
+            <h3><%= grupo.nombre %></h3>
+            <p><%= grupo.descripcion.present? ? truncate(grupo.descripcion, length: 80) : "No hay descripción disponible" %></p>
+          </div>
+        <% end %>
+      <% end %>
+    </section>
+    <br>
+    <hr>
+  <% end %>
+
+  <br>
+  <% if @productos.any? %>
+    <h3>Productos encontrados</h3>
+    <section class="grupos" style="padding: 0;">
+      <% @productos.each do |producto| %>
+        <%= link_to grupo_product_path(producto.grupo, producto), class: "grupo-carta", style: "max-width: 350px;" do %>
+          <div class="grupo-imagen">
+            <% if producto.imagen.attached? %>
+              <%= image_tag url_for(producto.imagen), alt: producto.nombre %>
+            <% else %>
+              <%= image_tag 'LogoLogo.svg', alt: producto.nombre %>
+            <% end %>
+          </div>
+          <div class="grupo-info">
+            <h3><%= producto.nombre %></h3>
+            <p><%= producto.descripcion.present? ? truncate(producto.descripcion, length: 80) : "No hay descripción disponible" %></p>
+          </div>
+        <% end %>
+      <% end %>
+    </section>
+  <% end %>
+
+  <% if @grupos.empty? && @productos.empty? %>
+    <p>No se encontraron resultados.</p>
+  <% end %>
+
+</section>
+

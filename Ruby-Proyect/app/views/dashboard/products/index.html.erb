@@ -1,12 +1,18 @@
 <!-- app/views/dashboard/products/index.html.erb -->
 <h2>Lista de Productos</h2>
 
-<%= link_to "Nuevo Producto", new_dashboard_product_path, class: "btn-aggr" %>
-<br>
+<div style="display: flex; justify-content: space-between; align-items: center; flex-direction: row; margin-bottom: 20px;">
+  <%= link_to "Nuevo Producto", new_dashboard_product_path, class: "btn-aggr" %>
+
+  <%= form_with url: dashboard_products_path, method: :get, local: true, html: {class: "buscador"} do %>
+    <%= search_field_tag :query, params[:query], placeholder: "Buscar producto...", autocomplete: "off", id: "buscador-productos" %>
+  <% end %>
+</div>
+<br> 
 
 <div class="productss">
   <% @products.each do |product| %>
-    <div class="product-card">
+    <div class="product-card" data-nombre="<%= I18n.transliterate(product.nombre.downcase) %>">
       <h3><%= product.nombre %></h3>
       <%= image_tag(product.imagen.attached? ? product.imagen : "LogoLogoText2.svg") %>
       <p>id: <%= product.id %></p>
@@ -31,4 +37,35 @@
       <%= button_to "Eliminar", dashboard_product_path(product), method: :delete, class: "btn-eliminar" %>
     </div>
   <% end %>
+  <div id="sin-resultados-productos" style="display: none; text-align: center; margin-top: 20px; color: gray;">
+    No se encontraron productos.
+  </div>
 </div>
+
+
+<script>
+  document.addEventListener("turbo:load", function () {
+    const input = document.getElementById("buscador-productos");
+    const cards = document.querySelectorAll(".product-card");
+    const mensaje = document.getElementById("sin-resultados-productos");
+
+    const normalizar = (str) =>
+      str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+    input.addEventListener("input", function () {
+      const valor = normalizar(input.value.trim());
+      let visibles = 0;
+
+      cards.forEach((card) => {
+        const nombre = normalizar(card.dataset.nombre);
+        const visible = nombre.includes(valor);
+        card.style.display = visible ? "" : "none";
+        if (visible) visibles++;
+      });
+
+      mensaje.style.display = visibles === 0 ? "block" : "none";
+    });
+  });
+</script>
+
+

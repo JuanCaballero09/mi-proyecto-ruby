@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("turbo:load", function () {
   // === Colores del sistema (desde CSS variables) ===
   const colores = getComputedStyle(document.documentElement);
   const base = colores.getPropertyValue("--base").trim();

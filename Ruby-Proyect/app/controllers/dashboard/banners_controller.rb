@@ -1,7 +1,7 @@
 class Dashboard::BannersController < ApplicationController
   layout "dashboard"
 
-   def index
+  def index
     @banners = Banner.order(:id)
   end
 

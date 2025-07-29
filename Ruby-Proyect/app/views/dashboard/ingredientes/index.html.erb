@@ -1,10 +1,14 @@
 <h1>Lista de Ingredientes</h1>
-
-<%= link_to "Nuevo Ingrediente", new_dashboard_ingrediente_path, class: "btn-aggr" %>
+<div style="display: flex; justify-content: space-between; align-items: center; flex-direction: row; margin-bottom: 20px;">
+    <%= link_to "Nuevo Ingrediente", new_dashboard_ingrediente_path, class: "btn-aggr" %>
+    <%= form_with url: dashboard_ingredientes_path, method: :get, local: true, html: {class: "buscador"} do %>
+        <%= search_field_tag :query, params[:query], placeholder: "Buscar ingrediente...", autocomplete: "off", id: "buscador-ingredientes" %>
+    <% end %>
+</div>
 <br>
 
 <% @ingredientes.each do |ingrediente| %>
-    <div class="dashboard-ingrediente">
+    <div class="dashboard-ingrediente" data-nombre="<%= I18n.transliterate(ingrediente.nombre.downcase) %>">
         <div class="grupo-info-dashboard">
             <strong><%= ingrediente.nombre %></strong>
             <p>/</p>
@@ -16,3 +20,32 @@
         </div>
     </div>
 <%end%>
+
+<div id="sin-resultados-ingredientes" style="display: none; text-align: center; margin-top: 20px; color: gray;">
+  No se encontraron ingredientes.
+</div>
+
+<script>
+  document.addEventListener("turbo:load", function () {
+    const input = document.getElementById("buscador-ingredientes");
+    const cards = document.querySelectorAll(".dashboard-ingrediente");
+    const mensaje = document.getElementById("sin-resultados-ingredientes");
+
+    const normalizar = (str) =>
+      str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+    input.addEventListener("input", function () {
+      const valor = normalizar(input.value.trim());
+      let visibles = 0;
+
+      cards.forEach((card) => {
+        const nombre = normalizar(card.dataset.nombre);
+        const visible = nombre.includes(valor);
+        card.style.display = visible ? "" : "none";
+        if (visible) visibles++;
+      });
+
+      mensaje.style.display = visibles === 0 ? "block" : "none";
+    });
+  });
+</script>

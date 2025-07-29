@@ -203,9 +203,10 @@ input:focus{outline: none;}
 }
 
 .buscador input[type="search"]{
-    padding: 5px;
+    padding: 10px;
     border-radius: 8px;
-    border: 2px solid ;
+    font-size: 16px;
+    border: 1px solid var(--base);
     min-width: 200px;
 }
 
@@ -444,7 +445,7 @@ input:focus{outline: none;}
 }
 
 .grupo-producto{
-    max-width: fit-content;
+    max-width: 350px;
 }
 
 .grupo-imagen {
