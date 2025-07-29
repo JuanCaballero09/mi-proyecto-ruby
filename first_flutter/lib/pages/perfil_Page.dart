@@ -4,9 +4,10 @@ class PerfilPage extends StatelessWidget {
   const PerfilPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+ Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 40,
        automaticallyImplyLeading: false,
         centerTitle: true,
         backgroundColor: const Color(0xFFFF936B),
@@ -14,9 +15,7 @@ class PerfilPage extends StatelessWidget {
           child:(
             Image.asset(
               "assets/imagen5.png",
-              width: 170,
-
-
+              width: 150,
             )
           ),
         ),
