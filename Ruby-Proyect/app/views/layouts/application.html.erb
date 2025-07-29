@@ -29,12 +29,12 @@
             <%= image_tag "LogoLogo.svg" %>
             <h1>Bitevia Software</h1>
         </div>
-        <div class="buscador">
-            <input type="search" name="barra_busquedad">
-            <button type="submit">
-                <%= image_tag "icons/magnifying-glass-solid.svg" %>
-            </button>
-        </div>
+        <%= form_with url: buscar_path, method: :get, local: true, html: {class: "buscador"} do %>
+          <%= search_field_tag :q, params[:q], placeholder: "Buscar productos...", class: "form-control" %>
+          <button type="submit">
+              <%= image_tag "icons/magnifying-glass-solid.svg", alt: "Buscar" %>
+          </button>
+        <% end %>
       </header>
 
       <nav class="navbar">
@@ -55,7 +55,7 @@
             <% total = session[:carrito]&.sum { |p| p["cantidad"] } || 0 %>
             <span id="contador-carrito" class="disabled"><%= total %></span>
             <%= link_to image_tag("icons/cart-shopping-solid.svg", alt: "Carrito"), "#", class: "disabled" %> <!-- temporal -->
-            <%= link_to image_tag("icons/user-solid.svg", alt: "Perfil"), "#", class: "disabled"%>
+            <%= link_to image_tag("icons/user-solid.svg", alt: "Perfil"), edit_user_registration_path%>
 
             <div class="btn-user">
               <%= button_to "Cerrar sesión", destroy_user_session_path, method: :delete, 

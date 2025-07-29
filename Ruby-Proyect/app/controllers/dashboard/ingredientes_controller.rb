@@ -5,7 +5,14 @@ class Dashboard::IngredientesController < ApplicationController
   before_action :set_ingrediente, only: [:edit, :update, :destroy] # rubocop:disable Layout/SpaceInsideArrayLiteralBrackets
 
   def index
-    @ingredientes = Ingrediente.order(:id)
+    if params[:query].present?
+      query = I18n.transliterate(params[:query].downcase.strip)
+      @ingredientes = Ingrediente.all.select do |i|
+        I18n.transliterate(i.nombre.downcase).include?(query)
+      end.sort_by(&:id)
+    else
+      @ingredientes = Ingrediente.order(:id)
+    end
   end
 
   def new

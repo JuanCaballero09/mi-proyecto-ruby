@@ -5,7 +5,14 @@ class Dashboard::GruposController < ApplicationController
   before_action :check_admin
 
   def index
-    @grupos = Grupo.order(:id)
+    if params[:query].present?
+      query = I18n.transliterate(params[:query].downcase.strip)
+      @grupos = Grupo.all.select do |p|
+      I18n.transliterate(p.nombre.downcase).include?(query)
+    end.sort_by(&:id)
+    else
+      @grupos = Grupo.order(:id)
+    end
   end
 
   def new

@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   resources :grupos, path: "categoria", only: [ :index, :show ] do
     resources :products, path: "producto", only: [ :index, :show ], module: :grupos
   end
-  
+
+  get "/buscar", to: "busqueda#index", as: "buscar"
+
   resources :products, path: "productos", only: [:index] # rubocop:disable Layout/SpaceInsideArrayLiteralBrackets
 
   # resources :pedidos, only: [:create] # rubocop:disable Layout/SpaceInsideArrayLiteralBrackets

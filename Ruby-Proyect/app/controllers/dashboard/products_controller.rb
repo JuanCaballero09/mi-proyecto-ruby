@@ -5,7 +5,14 @@ class Dashboard::ProductsController < ApplicationController
   before_action :check_admin
 
   def index
-    @products = Product.order(:id)
+    if params[:query].present?
+    query = I18n.transliterate(params[:query].downcase.strip)
+    @products = Product.all.select do |p|
+      I18n.transliterate(p.nombre.downcase).include?(query)
+    end.sort_by(&:id)
+    else
+      @products = Product.order(:id)
+    end
   end
 
   def new
