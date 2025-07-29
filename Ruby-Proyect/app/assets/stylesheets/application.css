@@ -203,11 +203,12 @@ input:focus{outline: none;}
 }
 
 .buscador input[type="search"]{
-    padding: 10px;
-    border-radius: 8px;
+    padding: 10px 15px;
+    border-radius: 50px;
     font-size: 16px;
     border: 1px solid var(--base);
     min-width: 200px;
+    background-color: white;
 }
 
 .buscador img{
