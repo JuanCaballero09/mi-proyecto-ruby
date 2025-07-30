@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => LocationPage()),
+                MaterialPageRoute(builder: (context) => MapaOSMPage()),
               );
             },
           ),

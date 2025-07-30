@@ -15,6 +15,11 @@ dependencies:
   carousel_slider: ^4.2.0
   google_fonts: ^4.0.4
   intl: ^0.19.0
+  flutter_map: ^4.0.0
+  positioned_tap_detector_2: ^1.0.4
+  latlong2: ^0.8.1
+
+
 
 dev_dependencies:
   flutter_test:
