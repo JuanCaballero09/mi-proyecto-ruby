@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
 
   final PageController _pageController = PageController(
     initialPage: 1000,
-  ); // Empieza en un número alto
+  ); 
   int _currentIndex = 0;
   Timer? _timer;
 
@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
         controller: _pageController,
         itemBuilder: (context, index) {
           final actualIndex =
-              index % imaglist.length; // Calcula índice real con módulo
+              index % imaglist.length; 
           return Image.asset(imaglist[actualIndex], fit: BoxFit.cover);
         },
         onPageChanged: (index) {
