@@ -26,7 +26,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFF936B),
+      backgroundColor: const Color.fromRGBO(237, 88, 33, 1),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
