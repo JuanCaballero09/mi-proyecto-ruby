@@ -16,22 +16,15 @@ class CarritoPageState extends State<CarritoPage> {
         toolbarHeight: 40,
         automaticallyImplyLeading: false,
         centerTitle: true,
-        backgroundColor: const Color(0xFFFF936B),
-        title: Center(
-          child: Image.asset(
-            "assets/imagen5.png",
-            width: 150,
-          ),
-        ),
+        backgroundColor: const Color.fromRGBO(237, 88, 33, 1),
+        title: Center(child: Image.asset("assets/imagen5.png", width: 150)),
       ),
       body: BlocBuilder<CartBloc, CartState>(
         builder: (context, state) {
           final cartItems = state.cart.items;
 
           if (cartItems.isEmpty) {
-            return const Center(
-              child: Text('El carrito está vacío.'),
-            );
+            return const Center(child: Text('El carrito está vacío.'));
           }
 
           return ListView.builder(
@@ -46,7 +39,8 @@ class CarritoPageState extends State<CarritoPage> {
                       icon: const Icon(Icons.remove_circle),
                       onPressed: () {
                         context.read<CartBloc>().add(
-                            UpdateCartItemQuantity(item.id, item.quantity - 1));
+                          UpdateCartItemQuantity(item.id, item.quantity - 1),
+                        );
                       },
                     ),
                     Text('Cantidad: ${item.quantity}'),
@@ -54,7 +48,8 @@ class CarritoPageState extends State<CarritoPage> {
                       icon: const Icon(Icons.add_circle),
                       onPressed: () {
                         context.read<CartBloc>().add(
-                            UpdateCartItemQuantity(item.id, item.quantity + 1));
+                          UpdateCartItemQuantity(item.id, item.quantity + 1),
+                        );
                       },
                     ),
                   ],
@@ -78,9 +73,13 @@ class CarritoPageState extends State<CarritoPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text('Total: ${state.cart.totalPrice}',
-                    style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.bold)),
+                Text(
+                  'Total: ${state.cart.totalPrice}',
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 const SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () {

@@ -9,8 +9,6 @@ import 'repository/product_repository.dart';
 import 'repository/local_product_repository.dart';
 import 'pages/splash_page.dart';
 import 'package:first_flutter/pages/register_page.dart';
-  
-
 
 
 void main() {
@@ -101,14 +99,11 @@ class MyApp extends StatelessWidget {
           '/login': (context) => const LoginPage(),
           '/register': (context) => const RegisterPage(),
           '/home': (context) => BlocProvider.value(
-        value: BlocProvider.of<ProductBloc>(context),
-         child: WelcomePage(), // o HomePage()
+            value: BlocProvider.of<ProductBloc>(context),
+            child: WelcomePage(), // o HomePage()
+          ),
+        },
       ),
-    },
-   ),
-   );
-    }
+    );
   }
-
-
-
+}

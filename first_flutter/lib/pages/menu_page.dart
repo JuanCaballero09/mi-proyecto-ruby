@@ -35,7 +35,7 @@ Widget build(BuildContext context) {
         toolbarHeight: 40,
        automaticallyImplyLeading: false,
         centerTitle: true,
-        backgroundColor: const Color(0xFFFF936B),
+        backgroundColor: const Color.fromRGBO(237, 88, 33, 1),
         title: Center(
           child:(
             Image.asset(
