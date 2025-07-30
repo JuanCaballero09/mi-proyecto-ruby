@@ -47,3 +47,17 @@
   </div>
 
 </div>
+
+<script>
+  window.ProductByGroup = {
+    // producto por grupo.
+    labels: <%= raw @products_by_group.keys.to_json %>, 
+    data: <%= raw @products_by_group.values.to_json %>
+  };
+
+  // crecimiento
+  window.salesGrowth = {
+    labels: <%= raw @grupos_growth.keys.to_json %>,
+    data: <%= raw @grupos_growth.values.to_json %>
+  };
+</script>
