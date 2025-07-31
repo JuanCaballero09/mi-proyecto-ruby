@@ -15,3 +15,15 @@ es:
       blank: "no puede estar en blanco"
       taken: "ya está en uso"
       confirmation: "no coincide"
+
+
+  date:
+    abbr_month_names: [~, Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic]
+    month_names: [~, Enero, Febrero, Marzo, Abril, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre]
+
+
+  time:
+    formats: 
+      default: "%d/%m/%Y %H:%M"
+      short: "%d %b %H:%M"
+      long: "%A %d de %B de %Y %H:%M"

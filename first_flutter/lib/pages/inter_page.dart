@@ -38,8 +38,7 @@ class _ProductPageState extends State<ProductPage> {
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Colors.black,
         unselectedItemColor: Colors.white,
-        backgroundColor: const Color(0xFFFF936B), 
-
+        backgroundColor: const Color.fromRGBO(237, 88, 33, 1),
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
 

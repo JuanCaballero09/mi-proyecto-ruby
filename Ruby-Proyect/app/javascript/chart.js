@@ -9,10 +9,10 @@ document.addEventListener("turbo:load", function () {
   new Chart(document.getElementById("chartBarras"), {
     type: "bar",
     data: {
-      labels: ["Grupo 1", "Grupo 2", "Grupo 3"],
+      labels: window.ProductByGroup.labels,
       datasets: [{
         label: "Productos",
-        data: [7, 7, 7],
+        data: window.ProductByGroup.data,
         backgroundColor: base
       }]
     },
@@ -44,10 +44,10 @@ document.addEventListener("turbo:load", function () {
   new Chart(document.getElementById("chartLineas"), {
     type: "line",
     data: {
-      labels: ["Ene", "Feb", "Mar", "Abr", "May", "Jun"],
+      labels: window.salesGrowth.labels,
       datasets: [{
         label: "Crecimiento",
-        data: [10, 5, 8, 9, 11, 15],
+        data: window.salesGrowth.data,
         fill: true,
         backgroundColor: claro,
         borderColor: base,
@@ -80,10 +80,10 @@ document.addEventListener("turbo:load", function () {
   new Chart(document.getElementById("chartTorta"), {
     type: "doughnut",
     data: {
-      labels: ["Grupo 1", "Grupo 2", "Grupo 3"],
+      labels: window.ProductByGroup.labels,
       datasets: [{
         label: "Distribución",
-        data: [7, 7, 7],
+        data: window.ProductByGroup.data,
         backgroundColor: [base, claro, oscuro],
         borderColor: "#fff",
         borderWidth: 2

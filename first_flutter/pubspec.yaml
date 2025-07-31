@@ -1,6 +1,6 @@
 name: first_flutter
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
@@ -21,6 +21,7 @@ dependencies:
 
 
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -29,33 +30,34 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  assets: 
-  - assets/imagen1.jpeg
-  - assets/imagen2.jpeg
-  - assets/imagen3.jpeg
-  - assets/imagen4.png
-  - assets/imagen5.png
-  - assets/imagen6.png
-  - assets/facebook.png
-  - assets/instagram.png
-  - assets/whatsapp.png
-  - assets/products.json
-  - assets/Hamburguesa sencilla.jpg
-  - assets/Hamburguesa BBQ.jpeg
-  - assets/Pizza margarita.jpg
-  - assets/Pizza pepperoni.jpg
-  - assets/Ensalada Cesar.jpg
-  - assets/Ensalada Mediterranea.jpg
-  - assets/Tacos al Pastor.jpg
-  - assets/Tacos de Pollo.jpg
-  - assets/Hamburgesa Doble Queso.jpeg
-  - assets/Pizza Hawiana.jpg
-  - assets/Ensalada de Atun.jpg
-  - assets/Tacos Veganos.jpg
-
-
+  assets:
+    - assets/imagen1.jpeg
+    - assets/imagen2.jpeg
+    - assets/imagen3.jpeg
+    - assets/imagen4.png
+    - assets/imagen5.png
+    - assets/imagen6.png
+    - assets/facebook.png
+    - assets/instagram.png
+    - assets/whatsapp.png
+    - assets/products.json
+    - assets/Hamburguesa sencilla.jpg
+    - assets/Hamburguesa BBQ.jpeg
+    - assets/Pizza margarita.jpg
+    - assets/Pizza pepperoni.jpg
+    - assets/Ensalada Cesar.jpg
+    - assets/Ensalada Mediterranea.jpg
+    - assets/Tacos al Pastor.jpg
+    - assets/Tacos de Pollo.jpg
+    - assets/Hamburgesa Doble Queso.jpeg
+    - assets/Pizza Hawiana.jpg
+    - assets/Ensalada de Atun.jpg
+    - assets/Tacos Veganos.jpg
+    - assets/domicilio moto.jpg
+    - assets/bebida.jpg
+    - assets/carrito vacio.png
+    
 flutter_launcher_icons:
   android: true
   ios: true
   image_path: "assets/icon/icon.ico"
-
