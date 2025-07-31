@@ -1,3 +1,5 @@
+import 'package:first_flutter/pages/carrito_Page.dart';
+import 'package:first_flutter/pages/menu_page.dart';
 import 'package:first_flutter/pages/welcome_page.dart';
 import 'package:first_flutter/pages/login_page.dart';
 import 'package:first_flutter/repository/mocki_product_repository.dart';
@@ -96,6 +98,8 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => SplashPage(),
+          '/menu': (context) => const MenuPage(),
+          '/carrito': (context) => CarritoPage(),
           '/welcome': (context) => const WelcomePage(),
           '/login': (context) => const LoginPage(),
           '/register': (context) => const RegisterPage(),

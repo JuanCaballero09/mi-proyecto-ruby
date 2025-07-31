@@ -37,7 +37,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       final index = updatedItems.indexWhere((item) => item.id == event.item.id);
 
       if (index >= 0) {
-        updatedItems[index].quantity += event.item.quantity;
+        final existingItem = updatedItems[index];
+        updatedItems[index] = existingItem.copyWith(quantity: existingItem.quantity + 1);
       } else {
         updatedItems.add(event.item);
       }
@@ -56,7 +57,11 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       final index = updatedItems.indexWhere((item) => item.id == event.itemId);
 
       if (index >= 0) {
-        updatedItems[index].quantity = event.quantity;
+        if (event.quantity <= 0) {
+          updatedItems.removeAt(index);
+        } else {
+          updatedItems[index] = updatedItems[index].copyWith(quantity: event.quantity);
+        }
       }
 
       emit(CartState(Cart(items: updatedItems)));
