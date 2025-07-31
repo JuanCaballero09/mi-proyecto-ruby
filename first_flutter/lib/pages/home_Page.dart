@@ -371,38 +371,63 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         const SizedBox(height: 20),
-        _buildSectionTitle('NUEVO SERVICIO'),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: _buildNovedadCard('assets/domicilio moto.jpg', isFullWidth: true),
-        ),
-        const SizedBox(height: 20),
+     _buildSectionTitle('NUEVO SERVICIO'),
+Padding(
+  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+  child: GridView.count(
+    crossAxisCount: 2,
+    shrinkWrap: true,
+    physics: NeverScrollableScrollPhysics(),
+    crossAxisSpacing: 12,
+    mainAxisSpacing: 12,
+    childAspectRatio: 3 / 2,
+    children: [
+      _buildNovedadCardConTexto('assets/domicilio moto.jpg', 'Domicilio'),
+    ],
+  ),
+),
       ],
     );
   }
 
-  Widget _buildNovedadCard(String imagePath, {bool isFullWidth = false}) {
-    return Container(
-      height: isFullWidth ? 150 : null,
-      decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 226, 83, 31),
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 4,
-            offset: Offset(0, 2),
+Widget _buildNovedadCardConTexto(String imagePath, String titulo) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.stretch,
+    children: [
+      Expanded(
+        child: Container(
+          decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 226, 83, 31),
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 4,
+                offset: Offset(0, 2),
+              ),
+            ],
           ),
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
-        child: Image.asset(
-          imagePath,
-          fit: BoxFit.cover,
-          width: double.infinity,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: Image.asset(
+              imagePath,
+              fit: BoxFit.cover,
+              width: double.infinity,
+            ),
+          ),
         ),
       ),
-    );
-  }
+      SizedBox(height: 6),
+      Center(
+        child: Text(
+          titulo,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 13,
+          ),
+        ),
+      ),
+    ],
+  );
+}
 }

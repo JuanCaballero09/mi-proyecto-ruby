@@ -49,7 +49,8 @@ flutter:
     - assets/Ensalada de Atun.jpg
     - assets/Tacos Veganos.jpg
     - assets/domicilio moto.jpg
-
+    - assets/bebida.jpg
+    
 flutter_launcher_icons:
   android: true
   ios: true
