@@ -1,0 +1,12 @@
+<tr id="carrito-item-<%= item.id %>">
+  <td><%= item.product.nombre %></td>
+  <td><%= item.cantidad %></td>
+  <td><%= number_to_currency(item.precio, unit: "COP ", separator: ",", delimiter: ".") %></td>
+  <td><%= number_to_currency(item.precio * item.cantidad, unit: "COP ", separator: ",", delimiter: ".") %></td>
+  <td>
+    <%= button_to "-", carrito_item_path(item), method: :patch, data: { turbo_stream: true } %>
+  </td>
+  <td>
+    <%= button_to "Eliminar todo", carrito_item_path(item), method: :delete, data: { turbo_confirm: "¿Eliminar este producto del carrito?" } %>
+  </td>
+</tr>

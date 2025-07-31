@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "users/registrations" }
 
-
   root to: "grupos#dashboard"
 
   resources :grupos, path: "categoria", only: [ :index, :show ] do
@@ -9,7 +8,8 @@ Rails.application.routes.draw do
   end
 
   get "/buscar", to: "busqueda#index", as: "buscar"
-
+  resource :carrito, only: [:show] # rubocop:disable Layout/SpaceInsideArrayLiteralBrackets
+  resources :carrito_items, only: [:create, :update, :destroy] # rubocop:disable Layout/SpaceInsideArrayLiteralBrackets
   resources :products, path: "productos", only: [:index] # rubocop:disable Layout/SpaceInsideArrayLiteralBrackets
 
   # resources :pedidos, only: [:create] # rubocop:disable Layout/SpaceInsideArrayLiteralBrackets

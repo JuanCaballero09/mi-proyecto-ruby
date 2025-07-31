@@ -1,0 +1,26 @@
+<% if @item.previously_new_record? %>
+  <turbo-stream action="append" target="carrito-body">
+    <template>
+      <%= render partial: "carritos/item", formats: [:html], locals: { item: @item } %>
+    </template>
+  </turbo-stream>
+<% else %>
+  <turbo-stream action="replace" target="carrito-item-<%= @item.id %>">
+    <template>
+      <%= render partial: "carritos/item", formats: [:html], locals: { item: @item } %>
+    </template>
+  </turbo-stream>
+<% end %>
+
+<turbo-stream action="update" target="contador-carrito">
+  <template>
+    <%= @item.carrito.carrito_items.sum(:cantidad) %>
+  </template>
+</turbo-stream>
+
+<turbo-stream action="update" target="flash-toast">
+  <template>
+    ✅ Producto agregado al carrito
+  </template>
+</turbo-stream>
+
