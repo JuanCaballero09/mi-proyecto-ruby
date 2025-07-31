@@ -1,19 +1,20 @@
 import 'package:first_flutter/pages/welcome_page.dart';
 import 'package:first_flutter/pages/login_page.dart';
+import 'package:first_flutter/repository/mocki_product_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/product_bloc.dart';
 import 'bloc/cart_bloc.dart';
 import 'repository/product_repository.dart';
 //import 'repository/http_product_repository.dart';
-import 'repository/local_product_repository.dart';
+import 'repository/mocki_product_repository.dart';
 import 'pages/splash_page.dart';
 import 'package:first_flutter/pages/register_page.dart';
 
 
 void main() {
   // Para usar datos locales, descomenta la siguiente línea y comenta la de HttpProductRepository:
-  final ProductRepository repository = LocalProductRepository();
+  final ProductRepository repository = MockiProductRepository();
   //const String apiUrl = 'https://64e8e7e299cf45b15fdffb7e.mockapi.io/api/v1/products';
   //final ProductRepository repository = HttpProductRepository(apiUrl: apiUrl);
 
