@@ -1,8 +1,10 @@
 import 'package:first_flutter/pages/carrito_Page.dart';
+import 'package:first_flutter/pages/checkout_page.dart';
 import 'package:first_flutter/pages/menu_page.dart';
 import 'package:first_flutter/pages/welcome_page.dart';
 import 'package:first_flutter/pages/login_page.dart';
 import 'package:first_flutter/repository/mocki_product_repository.dart';
+import 'package:first_flutter/bloc/payment_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/product_bloc.dart';
@@ -34,6 +36,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => ProductBloc(repository)),
         BlocProvider(create: (_) => CartBloc()),
+        BlocProvider(create: (_) => PaymentBloc()),
       ],
       child: MaterialApp(
         title: 'Restaurante',
@@ -107,6 +110,7 @@ class MyApp extends StatelessWidget {
             value: BlocProvider.of<ProductBloc>(context),
             child: WelcomePage(), // o HomePage()
           ),
+          '/checkout': (context) => const CheckoutPage(),
         },
       ),
     );
