@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'notificacion_Page.dart';
 import 'location_Page.dart';
+import 'product_detail_page.dart'; // Asegúrate de tener esta página
+import '../models/product.dart'; // Asegúrate de tener este modelo
 
 class HomePage extends StatefulWidget {
   @override
@@ -55,16 +57,8 @@ class _HomePageState extends State<HomePage> {
 
   void _mostrarSeccion(String seccion) {
     setState(() {
-      if (seccion == 'novedades') {
-        mostrarNovedades = true;
-        mostrarCategorias = false;
-      } else if (seccion == 'categorias') {
-        mostrarCategorias = true;
-        mostrarNovedades = false;
-      } else {
-        mostrarNovedades = false;
-        mostrarCategorias = false;
-      }
+      mostrarNovedades = seccion == 'novedades';
+      mostrarCategorias = seccion == 'categorias';
     });
 
     Future.delayed(Duration(milliseconds: 100), () {
@@ -169,15 +163,25 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildQuickLink(String label, VoidCallback onTap) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Chip(
-        label: Text(label),
-        backgroundColor: const Color.fromRGBO(237, 88, 33, 1),
+ Widget _buildQuickLink(String label, VoidCallback onTap) {
+  return GestureDetector(
+    onTap: onTap,
+    child: Chip(
+      label: Text(
+        label,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Color.fromRGBO(237, 88, 33, 1), // Texto naranja
+        ),
       ),
-    );
-  }
+      backgroundColor: Colors.white, // Fondo blanco
+      shape: StadiumBorder(
+        side: BorderSide(color: Color.fromRGBO(237, 88, 33, 1)), // Borde naranja
+      ),
+      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+    ),
+  );
+}
 
   Widget _buildSectionTitle(String title) {
     return Padding(
@@ -213,7 +217,7 @@ class _HomePageState extends State<HomePage> {
             },
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.white, // <-- Fondo de tarjeta de categoría
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
@@ -258,33 +262,121 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildNovedadesContenido() {
+    final novedades = [
+      Product(
+        id: 'np1',
+        name: 'Hamburguesa Doble',
+        description: 'Deliciosa hamburguesa con doble carne y queso',
+        price: 18000,
+        image: 'assets/Hamburgesa Doble Queso.jpeg',
+      ),
+      Product(
+        id: 'np2',
+        name: 'Pizza Pepperoni',
+        description: 'Pizza artesanal con pepperoni y queso mozzarella',
+        price: 22000,
+        image: 'assets/Pizza pepperoni.jpg',
+      ),
+      Product(
+        id: 'np3',
+        name: 'Taco De pollo',
+        description: 'taco de pollo con guacamole y pico de gallo',
+        price: 15000,
+        image: 'assets/Tacos de Pollo.jpg',
+      ),
+    ];
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildSectionTitle('NUEVO PRODUCTO'),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: GridView.count(
-            crossAxisCount: 2,
+          child: GridView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
-            crossAxisSpacing: 12,
-            mainAxisSpacing: 12,
-            childAspectRatio: 3 / 2,
-            children: [
-              _buildNovedadCard('assets/Hamburgesa Doble Queso.jpeg'),
-              _buildNovedadCard('assets/imagen2.jpeg'),
-              _buildNovedadCard('assets/imagen3.jpeg'),
-            ],
+            itemCount: novedades.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 12,
+              crossAxisSpacing: 12,
+              childAspectRatio: 0.75,
+            ),
+            itemBuilder: (context, index) {
+              final product = novedades[index];
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProductDetailPage(product: product),
+                    ),
+                  );
+                },
+                child: Card(
+                  elevation: 4,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Expanded(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+                          child: Image.asset(
+                            product.image,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              product.name,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              product.description,
+                              style: const TextStyle(
+                                fontSize: 12,
+                                color: Colors.black54,
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            const SizedBox(height: 6),
+                            Text(
+                              '\$${product.price}',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.green,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
           ),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         _buildSectionTitle('NUEVO SERVICIO'),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: _buildNovedadCard('assets/domicilio moto.jpg', isFullWidth: true),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
       ],
     );
   }
