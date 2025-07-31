@@ -48,6 +48,7 @@ flutter:
     - assets/Pizza Hawiana.jpg
     - assets/Ensalada de Atun.jpg
     - assets/Tacos Veganos.jpg
+    - assets/domicilio moto.jpg
 
 flutter_launcher_icons:
   android: true
