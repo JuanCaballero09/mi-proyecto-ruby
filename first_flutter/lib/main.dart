@@ -1,16 +1,14 @@
-import 'package:first_flutter/pages/carrito_Page.dart';
+import 'package:first_flutter/pages/carrito_page.dart';
 import 'package:first_flutter/pages/checkout_page.dart';
 import 'package:first_flutter/pages/menu_page.dart';
 import 'package:first_flutter/pages/welcome_page.dart';
 import 'package:first_flutter/pages/login_page.dart';
-import 'package:first_flutter/repository/mocki_product_repository.dart';
 import 'package:first_flutter/bloc/payment_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/product_bloc.dart';
 import 'bloc/cart_bloc.dart';
 import 'repository/product_repository.dart';
-//import 'repository/http_product_repository.dart';
 import 'repository/mocki_product_repository.dart';
 import 'pages/splash_page.dart';
 import 'package:first_flutter/pages/register_page.dart';
@@ -102,13 +100,13 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => SplashPage(),
           '/menu': (context) => const MenuPage(),
-          '/carrito': (context) => CarritoPage(),
+          '/carrito': (context) => const CarritoPage(),
           '/welcome': (context) => const WelcomePage(),
           '/login': (context) => const LoginPage(),
           '/register': (context) => const RegisterPage(),
           '/home': (context) => BlocProvider.value(
             value: BlocProvider.of<ProductBloc>(context),
-            child: WelcomePage(), // o HomePage()
+            child: const WelcomePage(),
           ),
           '/checkout': (context) => const CheckoutPage(),
         },

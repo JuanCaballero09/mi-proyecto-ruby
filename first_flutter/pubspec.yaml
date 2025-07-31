@@ -4,7 +4,7 @@ publish_to: "none"
 version: 0.1.0
 
 environment:
-  sdk: ^3.8.0
+  sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
   flutter:
@@ -26,7 +26,10 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/payment_methods/
+    - assets/payment_methods/daviplata.png
+    - assets/payment_methods/nequi.png
+    - assets/payment_methods/pse.png
+    - assets/payment_methods/dale.png
     - assets/imagen1.jpeg
     - assets/imagen2.jpeg
     - assets/imagen3.jpeg

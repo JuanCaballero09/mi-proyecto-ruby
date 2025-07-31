@@ -26,13 +26,28 @@ class CheckoutPage extends StatefulWidget {
 class _CheckoutPageState extends State<CheckoutPage> {
   PaymentMethod? selectedMethod;
 
-  List<PaymentMethod> get paymentMethods => PaymentMethodConfig.allMethods
-      .map((config) => PaymentMethod(
-            name: config['name']!,
-            icon: config['icon']!,
-            description: config['description']!,
-          ))
-      .toList();
+  final List<PaymentMethod> paymentMethods = [
+    PaymentMethod(
+      name: 'DaviPlata',
+      icon: 'assets/payment_methods/daviplata.png',
+      description: 'Paga con tu cuenta DaviPlata',
+    ),
+    PaymentMethod(
+      name: 'Nequi',
+      icon: 'assets/payment_methods/nequi.png',
+      description: 'Transfiere desde tu cuenta Nequi',
+    ),
+    PaymentMethod(
+      name: 'PSE',
+      icon: 'assets/payment_methods/pse.png',
+      description: 'Pago seguro electrónico',
+    ),
+    PaymentMethod(
+      name: 'Dale',
+      icon: 'assets/payment_methods/dale.png',
+      description: 'Paga con tu billetera Dale',
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -84,10 +99,22 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       groupValue: selectedMethod,
                       title: Row(
                         children: [
-                          Image.asset(
-                            method.icon,
-                            width: 40,
-                            height: 40,
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Image.asset(
+                              method.icon,
+                              width: 40,
+                              height: 40,
+                              fit: BoxFit.contain,
+                              errorBuilder: (context, error, stackTrace) {
+                                return Container(
+                                  width: 40,
+                                  height: 40,
+                                  color: Colors.grey[200],
+                                  child: const Icon(Icons.payment, color: Colors.grey),
+                                );
+                              },
+                            ),
                           ),
                           const SizedBox(width: 12),
                           Text(method.name),
