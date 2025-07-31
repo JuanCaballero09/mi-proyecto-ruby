@@ -17,8 +17,10 @@ class _HomePageState extends State<HomePage> {
     "assets/imagen3.jpeg",
   ];
 
+ 
   final PageController _pageController = PageController(initialPage: 1000);
   final ScrollController _scrollController = ScrollController();
+
   int _currentIndex = 0;
   Timer? _timer;
 
@@ -97,7 +99,7 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => LocationPage()),
+                MaterialPageRoute(builder: (context) => MapaOSMPage()),
               );
             },
           ),
@@ -211,6 +213,7 @@ class _HomePageState extends State<HomePage> {
           childAspectRatio: 3 / 2,
         ),
         itemBuilder: (context, index) {
+
           return GestureDetector(
             onTap: () {
               print('Tocaste: ${items[index]['titulo']}');
