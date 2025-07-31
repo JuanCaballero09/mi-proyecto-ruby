@@ -88,12 +88,18 @@ class ProductDetailPage extends StatelessWidget {
                   ),
                   onPressed: () {
                     context.read<CartBloc>().add(
-                      AddToCart(CartItem(
+                      AddToCart(
+                        CartItem(
                         id: product.id,
                         name: product.name,
                         price: product.price,
-                      )),
-                    );
+                        quantity: 1,
+                        image: product.image,
+                        description: product.description,
+                        ),
+                      ),
+                      );
+                    
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Producto agregado al pedido')),
                     );
