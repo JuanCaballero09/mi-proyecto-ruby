@@ -33,15 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    stored = stored_location_for(resource)
-
-    if stored&.include?("/categoria/")
-      carrito = Carrito.find_by(id: session[:carrito_id])
-      return carrito_path if carrito&.carrito_items&.any?
-      return root_path
-    end
-
-    stored || root_path
+    stored_location_for(resource) || root_path
   end
 
 

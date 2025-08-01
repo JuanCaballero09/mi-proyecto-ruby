@@ -17,7 +17,7 @@
 <% if @carrito.carrito_items.empty? %>
   <turbo-stream action="replace" target="carrito-contenido">
     <template>
-      <section id="carrito-contenido">
+      <section id="carrito-contenido" class="carrito">
         <h2>Tu Carrito</h2>
         <p>El carrito está vacío.</p>
       </section>

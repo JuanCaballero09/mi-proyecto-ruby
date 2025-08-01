@@ -1,26 +1,11 @@
-<section id="carrito-contenido">
+<section id="carrito-contenido" class="carrito">
   <h2>Tu Carrito</h2>
   <% if @items.empty? %>
     <p>El carrito está vacío.</p>
   <% else %>
-    <table>
-      <thead>
-        <tr>
-          <th>Producto</th>
-          <th>Cantidad</th>
-          <th>Precio</th>
-          <th>Total</th>
-          <th>Restar</th>
-          <th>Eliminar</th>
-        </tr>
-      </thead>
-      <tbody id="carrito-body">
-        <% @items.each do |item| %>
-          <%= render partial: "carritos/item", locals: { item: item } %>
-        <% end %>
-      </tbody>
-    </table>
-
+    <%= turbo_frame_tag "carrito" do %>
+      <%= render partial: "carritos/item", collection: @carrito.carrito_items, as: :item %>
+    <% end %>
     <%= link_to "Finalizar Compra", "#", class: "btn-finalizar" %>
   <% end %>
 </section>
