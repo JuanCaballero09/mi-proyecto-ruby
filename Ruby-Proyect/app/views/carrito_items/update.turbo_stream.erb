@@ -1,0 +1,38 @@
+<% if @item.destroyed? %>
+  <turbo-stream action="remove" target="carrito-item-<%= @item.id %>"></turbo-stream>
+<% else %>
+  <turbo-stream action="replace" target="carrito-item-<%= @item.id %>">
+    <template>
+      <%= render partial: "carritos/item", formats: [:html], locals: { item: @item } %>
+    </template>
+  </turbo-stream>
+<% end %>
+
+<turbo-stream action="update" target="contador-carrito">
+  <template>
+    <%= @carrito.carrito_items.sum(:cantidad) %>
+  </template>
+</turbo-stream>
+
+<% if @carrito.carrito_items.empty? %>
+  <turbo-stream action="replace" target="carrito-contenido">
+    <template>
+      <section id="carrito-contenido" class="carrito">
+        <h2>Tu Carrito</h2>
+        <p>El carrito está vacío.</p>
+      </section>
+    </template>
+  </turbo-stream>
+<% end %>
+
+<turbo-stream action="update" target="contador-productos">
+  <template>
+    <%= @carrito.carrito_items.sum(:cantidad) %>
+  </template>
+</turbo-stream>
+
+<turbo-stream action="update" target="total-carrito">
+  <template>
+    <%= number_to_currency(@carrito.carrito_items.sum { |item| item.precio * item.cantidad }, unit: "COP ", separator: ",", delimiter: ".") %>
+  </template>
+</turbo-stream>

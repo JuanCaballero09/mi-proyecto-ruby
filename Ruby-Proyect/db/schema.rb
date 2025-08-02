@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_10_050544) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_31_013249) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -43,6 +43,23 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_10_050544) do
   end
 
   create_table "banners", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "carrito_items", force: :cascade do |t|
+    t.bigint "carrito_id", null: false
+    t.bigint "product_id", null: false
+    t.integer "cantidad"
+    t.integer "precio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["carrito_id"], name: "index_carrito_items_on_carrito_id"
+    t.index ["product_id"], name: "index_carrito_items_on_product_id"
+  end
+
+  create_table "carritos", force: :cascade do |t|
+    t.string "numero_orden"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -106,6 +123,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_10_050544) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "carrito_items", "carritos"
+  add_foreign_key "carrito_items", "products"
   add_foreign_key "ingrediente_productos", "ingredientes"
   add_foreign_key "ingrediente_productos", "products"
   add_foreign_key "products", "grupos"

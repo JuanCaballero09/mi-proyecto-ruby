@@ -15,10 +15,10 @@
     <div class="product-card" data-nombre="<%= I18n.transliterate(product.nombre.downcase) %>">
       <h3><%= product.nombre %></h3>
       <%= image_tag(product.imagen.attached? ? product.imagen : "LogoLogoText2.svg") %>
-      <p>id: <%= product.id %></p>
+      <p><strong>id:</strong> <%= product.id %></p>
       <p><strong>Ingredientes:</strong> <%= product.ingredientes.map(&:nombre).join(", ")%></p>
-      <p>Descripción: <%= product.descripcion %></p>
-      <p>Precio: <%= number_to_currency(product.precio, unit: "COP ", separator: ",", delimiter: ".", precision: 0) %> $</p>
+      <p><strong>Descripción:</strong> <%= product.descripcion %></p>
+      <p><strong>Precio:</strong> <%= number_to_currency(product.precio, unit: "COP ", separator: ",", delimiter: ".", precision: 0) %> $</p>
 
       <div id="estado-<%= product.id %>">
         <%= button_to '',

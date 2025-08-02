@@ -23,17 +23,16 @@
     </head>
 
     <body>
-
       <header class="header">
         <div class="logo">
             <%= image_tag "LogoLogo.svg" %>
             <h1>Bitevia Software</h1>
         </div>
         <%= form_with url: buscar_path, method: :get, local: true, html: {class: "buscador"} do %>
-          <%= search_field_tag :q, params[:q], placeholder: "Buscar productos...", class: "form-control" %>
           <button type="submit">
               <%= image_tag "icons/magnifying-glass-solid.svg", alt: "Buscar" %>
           </button>
+          <%= search_field_tag :q, params[:q], placeholder: "Buscar productos..." %>
         <% end %>
       </header>
 
@@ -52,15 +51,14 @@
 
         <% if current_user %>
           <div class="user">
-            <% total = session[:carrito]&.sum { |p| p["cantidad"] } || 0 %>
-            <span id="contador-carrito" class="disabled"><%= total %></span>
-            <%= link_to image_tag("icons/cart-shopping-solid.svg", alt: "Carrito"), "#", class: "disabled" %> <!-- temporal -->
+            <% carrito = Carrito.find_by(id: session[:carrito_id]) %>
+            <% total = carrito&.carrito_items&.sum(:cantidad) || 0 %>
+            <span id="contador-carrito"><%= total %></span>
+            <%= link_to image_tag("icons/cart-shopping-solid.svg", alt: "Carrito"), carrito_path %> 
             <%= link_to image_tag("icons/user-solid.svg", alt: "Perfil"), edit_user_registration_path%>
 
             <div class="btn-user">
-              <%= button_to "Cerrar sesión", destroy_user_session_path, method: :delete, 
-                data: { turbo_confirm: "¿Estás seguro que quieres cerrar sesión?" } %>
-
+              <%= button_to "Cerrar sesión", destroy_user_session_path, method: :delete, data: { turbo_confirm: "¿Estás seguro que quieres cerrar sesión?" } %>
             </div>
           </div>
         <% else %>
@@ -68,14 +66,13 @@
             <% total = session[:carrito]&.sum { |p| p["cantidad"] } || 0 %>
             <span id="contador-carrito"><%= total %></span>
 
-            <%= link_to image_tag("icons/cart-shopping-solid.svg", alt: "Carrito", class: "carro disabled"), "#" %>
+            <%= link_to image_tag("icons/cart-shopping-solid.svg", alt: "Carrito"), carrito_path %>
             <div class="btn-user">
               <%= link_to "Iniciar Sesión", new_user_session_path%>
             </div>
           </div>
         <% end %>
       </nav>
-
 
       <main class="vistas">
         
@@ -103,11 +100,9 @@
           <span class="linea"></span>
         </div>
 
-        <p>v2.1.4</p>
+        <p>v2.7.4</p>
         <p>© 2025 Bitevia Software. Todos los derechos reservados.</p>
 
       </footer>
-
-      
-    </body>
+    </body>    
   </html>

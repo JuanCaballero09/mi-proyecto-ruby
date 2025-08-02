@@ -3,6 +3,8 @@ class Product < ApplicationRecord
 
   has_many :ingrediente_productos, dependent: :destroy
   has_many :ingredientes, through: :ingrediente_productos
+  has_many :carrito_items
+  has_many :carritos, through: :carrito_items
 
   validates :nombre, :descripcion, :precio, presence: true
 

@@ -43,6 +43,11 @@ nombres_ingredientes.each do |nombre|
 end
 puts "Ingredientes creados: #{Ingrediente.count}"
 
+# Cargar imágenes
+imagen_hamburguesas = Rails.root.join("db", "seeds", "hamburguesas.png")
+imagen_salchipapas  = Rails.root.join("db", "seeds", "Salchipapa.jpg")
+imagen_pizzas       = Rails.root.join("db", "seeds", "pizzas.jpg")
+
 puts "Creando productos..."
 
 # Hamburguesas
@@ -67,6 +72,14 @@ hamburguesas.each do |data|
   data[:ingredientes].each do |ing|
     producto.ingredientes << ingredientes[ing]
   end
+
+  if File.exist?(imagen_hamburguesas)
+    producto.imagen.attach(
+      io: File.open(imagen_hamburguesas),
+      filename: "hamburguesas.png",
+      content_type: "image/png"
+    )
+  end
 end
 
 # Salchipapas
@@ -85,6 +98,14 @@ salchipapas.each do |data|
   )
   data[:ingredientes].each do |ing|
     producto.ingredientes << ingredientes[ing]
+  end
+
+  if File.exist?(imagen_salchipapas)
+    producto.imagen.attach(
+      io: File.open(imagen_salchipapas),
+      filename: "Salchipapa.jpg",
+      content_type: "image/jpeg"
+    )
   end
 end
 
@@ -105,6 +126,14 @@ pizzas.each do |data|
   )
   data[:ingredientes].each do |ing|
     producto.ingredientes << ingredientes[ing]
+  end
+
+  if File.exist?(imagen_pizzas)
+    producto.imagen.attach(
+      io: File.open(imagen_pizzas),
+      filename: "pizzas.jpg",
+      content_type: "image/jpeg"
+    )
   end
 end
 
