@@ -1,13 +1,22 @@
-<div id="carrito-item-<%= item.id %>">
-  
-  <%= item.product.nombre %>
-  <%= item.cantidad %>
-  <%= number_to_currency(item.precio, unit: "COP ", separator: ",", delimiter: ".") %>
-  <%= number_to_currency(item.precio * item.cantidad, unit: "COP ", separator: ",", delimiter: ".") %>
-  
-    <%= button_to "-", carrito_item_path(item), method: :patch, data: { turbo_stream: true } %>
-  
-  
+<div id="carrito-item-<%= item.id %>" class="carrito-item">
+  <div class="carrito-item-imagen">
+    <%= image_tag item.product.imagen, alt: item.product.nombre %>
+  </div>
+
+  <div class="carrito-item-info">
+    <h3><%= item.product.nombre %></h3>
+    <p><strong>Precio unidad:</strong> <%= number_to_currency(item.precio, unit: "COP ", separator: ",", delimiter: ".") %></p>
+
+    <p><strong>Cantidad:</strong></p>
+    <div class="carrito-item-info-cantidad">
+      <%= button_to "-", carrito_item_path(item), method: :patch, data: { turbo_stream: true } %>
+      <p><%= item.cantidad %></p>
+      <%= button_to "+", incrementar_carrito_item_path(item), method: :put, data: { turbo_stream: true } %>
+    </div>
+
+    <p><strong>Total:</strong> <%= number_to_currency(item.precio * item.cantidad, unit: "COP ", separator: ",", delimiter: ".") %></p>
+    
     <%= button_to "Eliminar todo", carrito_item_path(item), method: :delete, data: { turbo_confirm: "¿Eliminar este producto del carrito?" } %>
-  
+
+  </div>
 </div>

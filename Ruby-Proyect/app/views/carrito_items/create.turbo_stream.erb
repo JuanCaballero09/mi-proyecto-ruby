@@ -24,3 +24,15 @@
   </template>
 </turbo-stream>
 
+<turbo-stream action="update" target="contador-productos">
+  <template>
+    <%= @carrito.carrito_items.sum(:cantidad) %>
+  </template>
+</turbo-stream>
+
+<turbo-stream action="update" target="total-carrito">
+  <template>
+    <%= number_to_currency(@carrito.carrito_items.sum { |item| item.precio * item.cantidad }, unit: "COP ", separator: ",", delimiter: ".") %>
+  </template>
+</turbo-stream>
+

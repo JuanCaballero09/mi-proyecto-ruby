@@ -14,7 +14,7 @@ html,body{
     background-size: cover;
     background-attachment: fixed;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    height: 100%;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
     display: flex;
@@ -175,7 +175,7 @@ input:focus{outline: none;}
     justify-content: space-between;
     align-items: center;
     padding: 0 30px;
-    margin: 10px 0;
+    margin: 35px 0;
     height: 25dvh;
 
 }
@@ -245,9 +245,10 @@ input:focus{outline: none;}
     background-color: var(--base);
     margin: 0;
     position: sticky;
+    width: 100%;
     top: 0;
     box-shadow: 0px 0 10px rgba(0, 0, 0, 0.5);
-    z-index: 10;
+    z-index: 100;
     padding: 0;
 }
 
@@ -374,6 +375,7 @@ input:focus{outline: none;}
     flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 .home{
@@ -678,6 +680,7 @@ input:focus{outline: none;}
     overflow-x: auto;
     scroll-behavior: smooth;
     scrollbar-width: none;
+    padding: 10px;
 }
   
 .slider-container::-webkit-scrollbar {
@@ -708,11 +711,12 @@ input:focus{outline: none;}
     width: fit-content;
     border-radius: 15px;
     align-items: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 .carta img {
-    aspect-ratio: 1 / 1;
-    height: 100%;
+    aspect-ratio: 3 / 2;
+    height: 300px;
     padding: 8px;
     border-radius: 15px;
     object-fit: cover;
@@ -722,10 +726,12 @@ input:focus{outline: none;}
     display: flex;
     flex-direction: column;
     text-align: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     color: #000;
     text-decoration: none;
-    height: 400px;
+    height: auto;
+    width: 100%;
+    gap: 10px;
 }
 
 .carta-producto{
@@ -847,7 +853,7 @@ input:focus{outline: none;}
     min-width: 100vw;
     font-family: Arial, sans-serif;
     align-items: flex-start;
-    overflow-x: hidden;
+    
 }
 
 .sidebar {
@@ -1363,17 +1369,110 @@ input:focus{outline: none;}
 
 /* Carrito */
 .carrito{
+    width: 850px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 10px;
+    margin: 20px auto;
     padding: 20px;
-    gap: 20px;
+    gap: 10px;
     background-color: white;
     border-radius: 15px;
-    box-sizing: border-box;
-    height: 100%;
+    flex: 1;
 }
+
+.carrito h2{
+    font-size: 30px;
+    margin: 20px 0;
+    color: var(--base-oscuro);
+}
+
+.carrito p{
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.carrito-items{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.carrito-item{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.carrito-item-imagen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carrito-item-imagen img{
+    width: 300px;
+    margin: 10px;
+    aspect-ratio: 3 / 2;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.carrito-item-info{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    gap: 10px;
+}
+
+.carrito-item-info p{
+    margin: 0;
+}
+
+.carrito-item-info button{
+    width: 100%;
+    background-color: var(--base);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.carrito-item-info button:hover{
+    background-color: var(--base-oscuro);
+}
+
+.carrito-item-info-cantidad{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+.carrito-item-info-cantidad button{
+    background-color: var(--base);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.carrito-item-info-cantidad button:hover{
+    background-color: var(--base-oscuro);
+}
+.carrito-item-info-cantidad p{margin: 0;font-size: 20px;}
+
+
 /* Editar Usuario */
 
 .edit{
@@ -1413,9 +1512,11 @@ input:focus{outline: none;}
 .edit .session-form{width: 100%;}
 
 .botones-compra{
+    height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: flex-end;
 }
 
 .botones-compra button{

@@ -9,10 +9,22 @@
 <% if @item.carrito.carrito_items.empty? %>
   <turbo-stream action="replace" target="carrito-contenido">
     <template>
-      <section id="carrito-contenido">
+      <section id="carrito-contenido" class="carrito">
         <h2>Tu Carrito</h2>
         <p>El carrito está vacío.</p>
       </section>
     </template>
   </turbo-stream>
 <% end %>
+
+<turbo-stream action="update" target="contador-productos">
+  <template>
+    <%= @carrito.carrito_items.sum(:cantidad) %>
+  </template>
+</turbo-stream>
+
+<turbo-stream action="update" target="total-carrito">
+  <template>
+    <%= number_to_currency(@carrito.carrito_items.sum { |item| item.precio * item.cantidad }, unit: "COP ", separator: ",", delimiter: ".") %>
+  </template>
+</turbo-stream>
