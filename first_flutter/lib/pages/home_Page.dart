@@ -39,21 +39,30 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _currentIndex = 1000;
-    _timer = Timer.periodic(Duration(seconds: 3), (Timer timer) {
-      _currentIndex++;
-      _pageController.animateToPage(
-        _currentIndex,
-        duration: Duration(milliseconds: 500),
-        curve: Curves.easeInOut,
-      );
+    // Esperamos a que el widget esté completamente montado antes de iniciar el temporizador
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _timer = Timer.periodic(Duration(seconds: 3), (Timer timer) {
+        if (mounted) {
+          setState(() {
+            _currentIndex++;
+            _pageController.animateToPage(
+              _currentIndex,
+              duration: Duration(milliseconds: 500),
+              curve: Curves.easeInOut,
+            );
+          });
+        }
+      });
     });
   }
 
   @override
   void dispose() {
-    _pageController.dispose();
-    _scrollController.dispose();
     _timer?.cancel();
+    if (mounted) {
+      _pageController.dispose();
+      _scrollController.dispose();
+    }
     super.dispose();
   }
 
