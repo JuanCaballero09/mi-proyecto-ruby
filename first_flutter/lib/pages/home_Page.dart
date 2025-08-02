@@ -10,19 +10,19 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
   final List<String> imaglist = [
     "assets/imagen1.jpeg",
     "assets/imagen2.jpeg",
     "assets/imagen3.jpeg",
   ];
 
- 
-  final PageController _pageController = PageController(initialPage: 1000);
+  late PageController _pageController;
   final ScrollController _scrollController = ScrollController();
 
-  int _currentIndex = 0;
+  int _currentIndex = 1000;
   Timer? _timer;
+  bool _isPageViewReady = false;
 
   bool mostrarNovedades = false;
   bool mostrarCategorias = false;
@@ -38,21 +38,34 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    _currentIndex = 1000;
-    // Esperamos a que el widget esté completamente montado antes de iniciar el temporizador
+    _pageController = PageController(initialPage: _currentIndex);
+    
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _timer = Timer.periodic(Duration(seconds: 3), (Timer timer) {
-        if (mounted) {
-          setState(() {
-            _currentIndex++;
-            _pageController.animateToPage(
-              _currentIndex,
-              duration: Duration(milliseconds: 500),
-              curve: Curves.easeInOut,
-            );
-          });
+      if (mounted) {
+        setState(() {
+          _isPageViewReady = true;
+        });
+        _startTimer();
+      }
+    });
+  }
+
+  void _startTimer() {
+    _timer?.cancel();
+    _timer = Timer.periodic(Duration(seconds: 3), (Timer timer) {
+      if (mounted && _isPageViewReady) {
+        _currentIndex++;
+        try {
+          _pageController.animateToPage(
+            _currentIndex,
+            duration: Duration(milliseconds: 500),
+            curve: Curves.easeInOut,
+          );
+        } catch (e) {
+          // Si hay un error, cancelamos el timer
+          _timer?.cancel();
         }
-      });
+      }
     });
   }
 
@@ -140,8 +153,15 @@ class _HomePageState extends State<HomePage> {
                     kToolbarHeight -
                     MediaQuery.of(context).padding.top -
                     100,
-                child: PageView.builder(
+                child: _isPageViewReady ? PageView.builder(
                   controller: _pageController,
+                  onPageChanged: (index) {
+                    if (mounted) {
+                      setState(() {
+                        _currentIndex = index;
+                      });
+                    }
+                  },
                   itemBuilder: (context, index) {
                     final actualIndex = index % imaglist.length;
                     return Container(
@@ -154,6 +174,12 @@ class _HomePageState extends State<HomePage> {
                       ),
                     );
                   },
+                ) : Center(
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      Theme.of(context).primaryColor,
+                    ),
+                  ),
                 ),
               ),
             ],
@@ -366,7 +392,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             const SizedBox(height: 6),
                             Text(
-                              '\$${product.price}',
+                              '\$ ${product.price} COP',
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.green,
