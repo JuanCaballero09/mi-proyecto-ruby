@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/cart_bloc.dart';
 
 class CarritoPage extends StatefulWidget {
+  const CarritoPage({super.key});
+
   @override
   CarritoPageState createState() => CarritoPageState();
 }

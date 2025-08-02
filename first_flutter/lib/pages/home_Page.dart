@@ -216,7 +216,7 @@ class _HomePageState extends State<HomePage> {
 
           return GestureDetector(
             onTap: () {
-              print('Tocaste: ${items[index]['titulo']}');
+              debugPrint('Tocaste: ${items[index]['titulo']}');
             },
             child: Container(
               decoration: BoxDecoration(
